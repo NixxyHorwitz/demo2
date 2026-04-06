@@ -121,9 +121,20 @@ if (isset($_SESSION['result'])) {
     <div class="icon-box"><i class="fa-solid fa-users"></i></div>
     <span>Referral</span>
   </a>
-  <a href="<?= base_url('pages/forum') ?>" class="vnav-tab" data-page="forum">
-    <div class="icon-box"><i class="fa-solid fa-comments"></i></div>
-    <span>Forum</span>
+  <?php
+    $tg_nav_link = '#';
+    if (!empty($config['web']['lte'])) {
+        $tg_nav_link = htmlspecialchars($config['web']['lte']);
+    } elseif (isset($db)) {
+        $_tg_q = mysqli_query($db, "SELECT link_telegram FROM settings LIMIT 1");
+        if ($_tg_q && $_tg_r = mysqli_fetch_assoc($_tg_q)) {
+            $tg_nav_link = htmlspecialchars($_tg_r['link_telegram'] ?? '#');
+        }
+    }
+  ?>
+  <a href="<?= $tg_nav_link ?>" target="_blank" rel="noopener" class="vnav-tab" data-page="forum">
+    <div class="icon-box"><i class="fa-brands fa-telegram"></i></div>
+    <span>Telegram</span>
   </a>
   <a href="<?= base_url('pages/profile') ?>" class="vnav-tab" data-page="profile">
     <div class="icon-box"><i class="fa-solid fa-user"></i></div>
