@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>404 – Halaman Tidak Ditemukan</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" defer></script>
+
+    <style>
+        *, *::before, *::after {
+            margin: 0; padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --navy:  #091B2E;
+            --blue:  #1A56DB;
+            --blue2: #2563EB;
+            --teal:  #0D9488;
+            --teal2: #14B8A6;
+            --sky:   #38BDF8;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+
+            background-color: #C5DDF5;
+            background-image:
+                radial-gradient(ellipse 90% 50% at 50% -5%,  rgba(56,189,248,0.40) 0%, transparent 62%),
+                radial-gradient(ellipse 70% 45% at 95%  85%, rgba(13,148,136,0.22) 0%, transparent 60%),
+                radial-gradient(ellipse 55% 40% at  5%  70%, rgba(96,165,250,0.22) 0%, transparent 55%),
+                linear-gradient(168deg, #DBEAFE 0%, #E0F2FE 40%, #CCFBF1 100%);
+        }
+
+        /* ── CARD ── */
+        .card {
+            width: 100%;
+            max-width: 420px;
+            border-radius: 28px;
+            padding: 40px 32px 36px;
+            text-align: center;
+
+            background: linear-gradient(155deg, rgba(255,255,255,0.82) 0%, rgba(255,255,255,0.60) 100%);
+            backdrop-filter: blur(32px) saturate(200%) brightness(1.04);
+            -webkit-backdrop-filter: blur(32px) saturate(200%) brightness(1.04);
+            border: 1.5px solid rgba(255,255,255,0.90);
+            box-shadow:
+                0 20px 60px rgba(9,27,46,0.14),
+                0  6px 18px rgba(9,27,46,0.08),
+                0  1px  0   rgba(255,255,255,0.90) inset;
+
+            animation: popIn .38s cubic-bezier(.22,1,.36,1) both;
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(.94) translateY(18px); }
+            to   { opacity: 1; transform: scale(1)  translateY(0); }
+        }
+
+        /* ── ICON BADGE ── */
+        .icon-wrap {
+            width: 80px; height: 80px;
+            border-radius: 24px;
+            margin: 0 auto 24px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 38px; color: #fff;
+            background: linear-gradient(135deg, var(--navy), var(--blue), var(--blue2));
+            box-shadow: 0 12px 32px rgba(26,86,219,0.45), 0 1px 0 rgba(255,255,255,0.12) inset;
+        }
+
+        /* ── 404 NUMBER ── */
+        .num {
+            font-size: 72px;
+            font-weight: 900;
+            letter-spacing: -4px;
+            line-height: 1;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--blue2) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: 800;
+            color: #0F172A;
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
+        }
+
+        .desc {
+            font-size: 13.5px;
+            color: #64748B;
+            line-height: 1.7;
+            font-weight: 500;
+            margin-bottom: 28px;
+        }
+
+        /* ── INFO BOX ── */
+        .info-box {
+            background: rgba(248,250,252,0.80);
+            border: 1.5px solid rgba(226,232,240,0.70);
+            border-radius: 16px;
+            padding: 14px 18px;
+            margin-bottom: 28px;
+            text-align: left;
+            box-shadow: 0 2px 8px rgba(9,27,46,0.05) inset;
+        }
+        .info-box ul { list-style: none; }
+        .info-box li {
+            font-size: 12.5px;
+            color: #475569;
+            padding: 4px 0;
+            display: flex; align-items: center; gap: 8px;
+            line-height: 1.5;
+        }
+        .info-box li::before {
+            content: '•';
+            color: var(--teal);
+            font-size: 16px;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+
+        /* ── BUTTON ── */
+        .btn-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 13px 28px;
+            border-radius: 24px;
+            border: none;
+            background: linear-gradient(135deg, var(--navy), #1A4A8A, var(--blue2));
+            color: #fff;
+            font-size: 14px;
+            font-weight: 800;
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+            box-shadow:
+                0 10px 26px rgba(26,86,219,0.45),
+                0  1px  0   rgba(255,255,255,0.10) inset;
+            transition: opacity .18s, transform .14s;
+        }
+        .btn-home:active { opacity: .84; transform: scale(.96); }
+
+        /* ── DIVIDER ── */
+        .divider {
+            display: flex; align-items: center; gap: 12px;
+            margin: 22px 0;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(203,213,225,0.60);
+        }
+        .divider span {
+            font-size: 11px;
+            color: #94A3B8;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        /* ── SECONDARY LINKS ── */
+        .links {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .link-chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 9px 16px;
+            border-radius: 20px;
+            background: rgba(241,245,249,0.80);
+            border: 1.5px solid rgba(203,213,225,0.70);
+            color: #475569;
+            font-size: 12.5px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background .16s, transform .12s;
+        }
+        .link-chip:active { background: rgba(226,232,240,0.90); transform: scale(.96); }
+        .link-chip i { font-size: 14px; color: var(--teal); }
+
+        /* ── FOOTER ── */
+        .footer-txt {
+            margin-top: 24px;
+            font-size: 11.5px;
+            color: #94A3B8;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+
+        <!-- Icon -->
+        <div class="icon-wrap">
+            <i class="ph-fill ph-map-trifold"></i>
+        </div>
+
+        <!-- 404 -->
+        <div class="num">404</div>
+        <div class="title">Halaman Tidak Ditemukan</div>
+        <div class="desc">
+            Maaf, halaman yang kamu akses tidak tersedia.<br>
+            Link mungkin salah atau halaman sudah dihapus.
+        </div>
+
+        <!-- Info box -->
+        <div class="info-box">
+            <ul>
+                <li>Periksa kembali URL yang kamu ketik</li>
+                <li>Halaman mungkin telah dipindahkan</li>
+                <li>Coba kembali ke halaman utama</li>
+            </ul>
+        </div>
+
+        <!-- CTA -->
+        <a href="/" class="btn-home">
+            <i class="ph-fill ph-house"></i> Kembali ke Beranda
+        </a>
+
+        <div class="divider"><span>atau</span></div>
+
+        <!-- Secondary links -->
+        <div class="links">
+            <a href="javascript:history.back()" class="link-chip">
+                <i class="ph-bold ph-arrow-left"></i> Halaman Sebelumnya
+            </a>
+            <a href="/pages/dashboard" class="link-chip">
+                <i class="ph-fill ph-chart-line-up"></i> Dashboard
+            </a>
+        </div>
+
+        <div class="footer-txt">&copy; <?php echo date('Y'); ?> Solusi Keuangan</div>
+
+    </div>
+
+</body>
+</html>

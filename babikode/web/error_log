@@ -1,0 +1,169 @@
+[23-Feb-2026 02:25:22 Asia/Jakarta] PHP Warning:  Undefined array key "profit_mode" in /home/bersama4/public_html/mainconfig.php on line 49
+[27-Feb-2026 04:39:20 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'korvest1_db1.produk' doesn't exist in /home/korvest1/public_html/core/model.php:7
+Stack trace:
+#0 /home/korvest1/public_html/core/model.php(7): mysqli_query()
+#1 /home/korvest1/public_html/babikode/web/index.php(183): Model->db_query()
+#2 {main}
+  thrown in /home/korvest1/public_html/core/model.php on line 7
+[27-Feb-2026 04:39:27 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'korvest1_db1.produk' doesn't exist in /home/korvest1/public_html/core/model.php:7
+Stack trace:
+#0 /home/korvest1/public_html/core/model.php(7): mysqli_query()
+#1 /home/korvest1/public_html/babikode/web/index.php(183): Model->db_query()
+#2 {main}
+  thrown in /home/korvest1/public_html/core/model.php on line 7
+[27-Feb-2026 05:01:17 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/korvest1/public_html/babikode/web/index.php on line 61
+[27-Feb-2026 05:01:17 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/korvest1/public_html/babikode/web/index.php on line 61
+[27-Feb-2026 05:01:17 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/korvest1/public_html/babikode/web/index.php on line 63
+[27-Feb-2026 05:01:17 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/korvest1/public_html/babikode/web/index.php on line 63
+[27-Feb-2026 05:03:01 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/korvest1/public_html/babikode/web/index.php on line 61
+[27-Feb-2026 05:03:01 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/korvest1/public_html/babikode/web/index.php on line 61
+[27-Feb-2026 05:03:01 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/korvest1/public_html/babikode/web/index.php on line 63
+[27-Feb-2026 05:03:01 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/korvest1/public_html/babikode/web/index.php on line 63
+[27-Feb-2026 05:07:05 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/korvest1/public_html/babikode/web/index.php on line 61
+[27-Feb-2026 05:07:05 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/korvest1/public_html/babikode/web/index.php on line 61
+[27-Feb-2026 05:07:05 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/korvest1/public_html/babikode/web/index.php on line 63
+[27-Feb-2026 05:07:05 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/korvest1/public_html/babikode/web/index.php on line 63
+[01-Mar-2026 09:33:01 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/korvesta/public_html/babikode/web/index.php on line 61
+[01-Mar-2026 09:33:01 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/korvesta/public_html/babikode/web/index.php on line 61
+[01-Mar-2026 09:33:01 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/korvesta/public_html/babikode/web/index.php on line 63
+[01-Mar-2026 09:33:01 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/korvesta/public_html/babikode/web/index.php on line 63
+[01-Mar-2026 09:33:18 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/korvesta/public_html/babikode/web/index.php on line 61
+[01-Mar-2026 09:33:18 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/korvesta/public_html/babikode/web/index.php on line 61
+[01-Mar-2026 09:33:18 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/korvesta/public_html/babikode/web/index.php on line 63
+[01-Mar-2026 09:33:18 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/korvesta/public_html/babikode/web/index.php on line 63
+[03-Mar-2026 10:41:24 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/bersama4/public_html/babikode/web/index.php on line 61
+[03-Mar-2026 10:41:24 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/bersama4/public_html/babikode/web/index.php on line 61
+[03-Mar-2026 10:41:24 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/bersama4/public_html/babikode/web/index.php on line 63
+[03-Mar-2026 10:41:24 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/bersama4/public_html/babikode/web/index.php on line 63
+[03-Mar-2026 12:36:43 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/bersama4/public_html/babikode/web/index.php on line 61
+[03-Mar-2026 12:36:43 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/bersama4/public_html/babikode/web/index.php on line 61
+[03-Mar-2026 12:36:43 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/bersama4/public_html/babikode/web/index.php on line 63
+[03-Mar-2026 12:36:43 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/bersama4/public_html/babikode/web/index.php on line 63
+[05-Mar-2026 03:15:29 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[05-Mar-2026 03:15:29 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[05-Mar-2026 03:15:29 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[05-Mar-2026 03:15:29 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[05-Mar-2026 04:59:57 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[05-Mar-2026 04:59:57 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[05-Mar-2026 04:59:57 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[05-Mar-2026 04:59:57 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[05-Mar-2026 11:52:28 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[05-Mar-2026 11:52:28 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[05-Mar-2026 11:52:28 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[05-Mar-2026 11:52:28 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[05-Mar-2026 15:11:37 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[05-Mar-2026 15:11:37 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[05-Mar-2026 15:11:37 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[05-Mar-2026 15:11:37 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[05-Mar-2026 23:00:24 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[05-Mar-2026 23:00:24 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[05-Mar-2026 23:00:24 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[05-Mar-2026 23:00:24 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[05-Mar-2026 23:18:42 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[05-Mar-2026 23:18:42 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[05-Mar-2026 23:18:42 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[05-Mar-2026 23:18:42 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[05-Mar-2026 23:19:11 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[05-Mar-2026 23:19:11 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[05-Mar-2026 23:19:11 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[05-Mar-2026 23:19:11 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[05-Mar-2026 23:22:12 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[05-Mar-2026 23:22:12 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[05-Mar-2026 23:22:12 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[05-Mar-2026 23:22:12 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[05-Mar-2026 23:22:48 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[05-Mar-2026 23:22:48 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[05-Mar-2026 23:22:48 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[05-Mar-2026 23:22:48 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[05-Mar-2026 23:23:19 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[05-Mar-2026 23:23:19 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[05-Mar-2026 23:23:19 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[05-Mar-2026 23:23:19 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[06-Mar-2026 05:03:19 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[06-Mar-2026 05:03:19 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[06-Mar-2026 05:03:19 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[06-Mar-2026 05:03:19 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[06-Mar-2026 05:13:10 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[06-Mar-2026 05:13:10 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 61
+[06-Mar-2026 05:13:10 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[06-Mar-2026 05:13:10 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/gwlghghw/public_html/babikode/web/index.php on line 63
+[06-Mar-2026 14:14:31 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/asetnaik/public_html/babikode/web/index.php on line 61
+[06-Mar-2026 14:14:31 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/asetnaik/public_html/babikode/web/index.php on line 61
+[06-Mar-2026 14:14:31 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/asetnaik/public_html/babikode/web/index.php on line 63
+[06-Mar-2026 14:14:31 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/asetnaik/public_html/babikode/web/index.php on line 63
+[06-Mar-2026 14:18:32 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/asetnaik/public_html/babikode/web/index.php on line 61
+[06-Mar-2026 14:18:32 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/asetnaik/public_html/babikode/web/index.php on line 61
+[06-Mar-2026 14:18:32 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/asetnaik/public_html/babikode/web/index.php on line 63
+[06-Mar-2026 14:18:32 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/asetnaik/public_html/babikode/web/index.php on line 63
+[07-Mar-2026 00:26:02 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/asetnaik/public_html/babikode/web/index.php on line 61
+[07-Mar-2026 00:26:02 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/asetnaik/public_html/babikode/web/index.php on line 61
+[07-Mar-2026 00:26:02 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/asetnaik/public_html/babikode/web/index.php on line 63
+[07-Mar-2026 00:26:02 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/asetnaik/public_html/babikode/web/index.php on line 63
+[07-Mar-2026 00:27:33 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/asetnaik/public_html/babikode/web/index.php on line 61
+[07-Mar-2026 00:27:33 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/asetnaik/public_html/babikode/web/index.php on line 61
+[07-Mar-2026 00:27:33 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/asetnaik/public_html/babikode/web/index.php on line 63
+[07-Mar-2026 00:27:33 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/asetnaik/public_html/babikode/web/index.php on line 63
+[08-Mar-2026 00:22:56 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/asetnaik/public_html/babikode/web/index.php on line 61
+[08-Mar-2026 00:22:56 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/asetnaik/public_html/babikode/web/index.php on line 61
+[08-Mar-2026 00:22:56 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/asetnaik/public_html/babikode/web/index.php on line 63
+[08-Mar-2026 00:22:56 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/asetnaik/public_html/babikode/web/index.php on line 63
+[12-Mar-2026 20:04:23 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/bersama4/public_html/babikode/web/index.php on line 61
+[12-Mar-2026 20:04:23 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/bersama4/public_html/babikode/web/index.php on line 61
+[12-Mar-2026 20:04:23 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/bersama4/public_html/babikode/web/index.php on line 63
+[12-Mar-2026 20:04:23 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/bersama4/public_html/babikode/web/index.php on line 63
+[13-Mar-2026 16:46:50 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/bersama4/public_html/babikode/web/index.php on line 61
+[13-Mar-2026 16:46:50 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/bersama4/public_html/babikode/web/index.php on line 61
+[13-Mar-2026 16:46:50 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/bersama4/public_html/babikode/web/index.php on line 63
+[13-Mar-2026 16:46:50 Asia/Jakarta] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/bersama4/public_html/babikode/web/index.php on line 63
+[13-Mar-2026 17:31:52 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/xzsrferp/public_html/babikode/web/index.php on line 61
+[13-Mar-2026 17:31:52 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/xzsrferp/public_html/babikode/web/index.php on line 63
+[13-Mar-2026 17:38:08 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/xzsrferp/public_html/babikode/web/index.php on line 61
+[13-Mar-2026 17:38:08 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/xzsrferp/public_html/babikode/web/index.php on line 63
+[13-Mar-2026 17:39:23 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/xzsrferp/public_html/babikode/web/index.php on line 61
+[13-Mar-2026 17:39:23 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/xzsrferp/public_html/babikode/web/index.php on line 63
+[13-Mar-2026 18:26:29 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/xzsrferp/public_html/babikode/web/index.php on line 61
+[13-Mar-2026 18:26:29 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/xzsrferp/public_html/babikode/web/index.php on line 63
+[13-Mar-2026 18:36:05 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/xzsrferp/public_html/babikode/web/index.php on line 61
+[13-Mar-2026 18:36:05 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/xzsrferp/public_html/babikode/web/index.php on line 63
+[13-Mar-2026 18:36:27 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/xzsrferp/public_html/babikode/web/index.php on line 61
+[13-Mar-2026 18:36:27 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/xzsrferp/public_html/babikode/web/index.php on line 63
+[13-Mar-2026 19:09:32 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/xzsrferp/public_html/babikode/web/index.php on line 61
+[13-Mar-2026 19:09:32 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/xzsrferp/public_html/babikode/web/index.php on line 63
+[14-Mar-2026 00:40:41 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/xzsrferp/public_html/babikode/web/index.php on line 61
+[14-Mar-2026 00:40:41 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/xzsrferp/public_html/babikode/web/index.php on line 63
+[14-Mar-2026 12:01:34 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/xzsrferp/public_html/babikode/web/index.php on line 61
+[14-Mar-2026 12:01:34 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/xzsrferp/public_html/babikode/web/index.php on line 63
+[14-Mar-2026 16:56:17 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/bersama4/public_html/babikode/web/index.php on line 61
+[14-Mar-2026 16:56:17 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/bersama4/public_html/babikode/web/index.php on line 63
+[22-Mar-2026 18:32:16 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/mola3329/public_html/babikode/web/index.php on line 61
+[22-Mar-2026 18:32:16 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/mola3329/public_html/babikode/web/index.php on line 63
+[22-Mar-2026 18:32:45 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/mola3329/public_html/babikode/web/index.php on line 61
+[22-Mar-2026 18:32:45 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/mola3329/public_html/babikode/web/index.php on line 63
+[22-Mar-2026 18:33:20 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/mola3329/public_html/babikode/web/index.php on line 61
+[22-Mar-2026 18:33:20 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/mola3329/public_html/babikode/web/index.php on line 63
+[22-Mar-2026 18:33:45 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/mola3329/public_html/babikode/web/index.php on line 61
+[22-Mar-2026 18:33:45 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/mola3329/public_html/babikode/web/index.php on line 63
+[22-Mar-2026 18:34:43 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/mola3329/public_html/babikode/web/index.php on line 61
+[22-Mar-2026 18:34:43 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/mola3329/public_html/babikode/web/index.php on line 63
+[22-Mar-2026 18:35:21 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/mola3329/public_html/babikode/web/index.php on line 61
+[22-Mar-2026 18:35:21 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/mola3329/public_html/babikode/web/index.php on line 63
+[22-Mar-2026 18:35:43 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/mola3329/public_html/babikode/web/index.php on line 61
+[22-Mar-2026 18:35:43 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/mola3329/public_html/babikode/web/index.php on line 63
+[22-Mar-2026 18:38:05 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/mola3329/public_html/babikode/web/index.php on line 61
+[22-Mar-2026 18:38:05 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/mola3329/public_html/babikode/web/index.php on line 63
+[22-Mar-2026 18:58:56 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/mola3329/public_html/babikode/web/index.php on line 61
+[22-Mar-2026 18:58:56 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/mola3329/public_html/babikode/web/index.php on line 63
+[22-Mar-2026 19:05:35 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/mola3329/public_html/babikode/web/index.php on line 61
+[22-Mar-2026 19:05:35 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/mola3329/public_html/babikode/web/index.php on line 63
+[22-Mar-2026 22:14:01 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/mola3329/public_html/babikode/web/index.php on line 61
+[22-Mar-2026 22:14:01 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/mola3329/public_html/babikode/web/index.php on line 63
+[23-Mar-2026 12:18:22 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/mola3329/public_html/babikode/web/index.php on line 61
+[23-Mar-2026 12:18:22 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/mola3329/public_html/babikode/web/index.php on line 63
+[23-Mar-2026 12:18:43 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/mola3329/public_html/babikode/web/index.php on line 61
+[23-Mar-2026 12:18:43 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/mola3329/public_html/babikode/web/index.php on line 63
+[23-Mar-2026 12:33:19 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/mola3329/public_html/babikode/web/index.php on line 61
+[23-Mar-2026 12:33:19 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/mola3329/public_html/babikode/web/index.php on line 63
+[06-Apr-2026 00:24:02 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/hbkw7299/public_html/babikode/web/index.php on line 61
+[06-Apr-2026 00:24:02 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/hbkw7299/public_html/babikode/web/index.php on line 63
+[06-Apr-2026 00:25:09 Asia/Jakarta] PHP Warning:  Undefined array key "running_text" in /home/hbkw7299/public_html/babikode/web/index.php on line 61
+[06-Apr-2026 00:25:09 Asia/Jakarta] PHP Warning:  Undefined array key "referral_text" in /home/hbkw7299/public_html/babikode/web/index.php on line 63
