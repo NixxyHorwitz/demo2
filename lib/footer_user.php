@@ -133,8 +133,8 @@ if (isset($_SESSION['result'])) {
     }
   ?>
   <a href="<?= $tg_nav_link ?>" target="_blank" rel="noopener" class="vnav-tab" data-page="forum">
-    <div class="icon-box"><i class="fa-brands fa-telegram"></i></div>
-    <span>Telegram</span>
+    <div class="icon-box"><i class="fa-solid fa-comments"></i></div>
+    <span>Forum</span>
   </a>
   <a href="<?= base_url('pages/profile') ?>" class="vnav-tab" data-page="profile">
     <div class="icon-box"><i class="fa-solid fa-user"></i></div>

@@ -50,7 +50,7 @@ $nama_web = htmlspecialchars($config_web['title'] ?? 'Website');
 
     <style>
 /* ============================================================
-   SWEETALERT2 THEME — Jet Black & Metallic Gold
+   SWEETALERT2 THEME — Dark Green & Yellow
 ============================================================ */
 
 /* ── BACKDROP ── */
@@ -59,7 +59,7 @@ $nama_web = htmlspecialchars($config_web['title'] ?? 'Website');
 }
 .swal2-backdrop-show,
 .swal2-container.swal2-backdrop-show {
-  background: rgba(0, 0, 0, 0.75) !important;
+  background: rgba(0, 0, 0, 0.7) !important;
   backdrop-filter: blur(6px) !important;
   -webkit-backdrop-filter: blur(6px) !important;
 }
@@ -67,20 +67,20 @@ $nama_web = htmlspecialchars($config_web['title'] ?? 'Website');
 /* ── POPUP BASE ── */
 .swal2-popup {
   font-family: 'Poppins', sans-serif !important;
-  border-radius: 16px !important;
+  border-radius: 20px !important;
   padding: 0 !important;
   overflow: hidden !important;
-  border: 1px solid rgba(197, 147, 39, 0.3) !important;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 0 1px rgba(197,147,39,0.1) !important;
-  background: #111111 !important;
+  border: 1px solid rgba(250, 204, 21, 0.2) !important;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(250,204,21,0.08) !important;
+  background: #023e35 !important;
   max-width: 320px !important;
   width: calc(100vw - 40px) !important;
 }
 
-/* top accent bar — gold gradient */
+/* top accent bar — yellow gradient */
 .swal2-popup::before {
   content: ''; display: block; width: 100%; height: 3px;
-  background: linear-gradient(90deg, #C59327, #F5D061, #C59327);
+  background: linear-gradient(90deg, #012b26, #facc15, #012b26);
   background-size: 200% 100%; animation: swal-stripe 2.5s linear infinite;
   flex-shrink: 0;
 }
@@ -116,12 +116,12 @@ $nama_web = htmlspecialchars($config_web['title'] ?? 'Website');
 /* Warning */
 .swal2-icon.swal2-warning { border-color: rgba(245, 158, 11, 0.4) !important; color: #f59e0b !important; }
 
-/* Info / Question — gold */
-.swal2-icon.swal2-info { border-color: rgba(197, 147, 39, 0.4) !important; color: #F5D061 !important; }
-.swal2-icon.swal2-question { border-color: rgba(197, 147, 39, 0.4) !important; color: #F5D061 !important; }
+/* Info / Question — yellow */
+.swal2-icon.swal2-info { border-color: rgba(250, 204, 21, 0.4) !important; color: #facc15 !important; }
+.swal2-icon.swal2-question { border-color: rgba(250, 204, 21, 0.4) !important; color: #facc15 !important; }
 
 /* ── LOADER ── */
-.swal2-loader { border-color: #F5D061 transparent #F5D061 transparent !important; border-width: 2px !important; }
+.swal2-loader { border-color: #facc15 transparent #facc15 transparent !important; border-width: 2px !important; }
 
 /* ── TITLE ── */
 .swal2-title {
@@ -132,32 +132,32 @@ $nama_web = htmlspecialchars($config_web['title'] ?? 'Website');
 /* ── HTML CONTENT ── */
 .swal2-html-container {
   font-family: 'Poppins', sans-serif !important; font-size: 12px !important; font-weight: 500 !important;
-  color: rgba(255,255,255,0.6) !important; line-height: 1.6 !important; padding: 4px 18px 16px !important; margin: 0 !important;
+  color: rgba(255,255,255,0.65) !important; line-height: 1.6 !important; padding: 4px 18px 16px !important; margin: 0 !important;
 }
-.swal2-html-container b, .swal2-html-container strong { color: #F5D061 !important; font-weight: 700 !important; }
+.swal2-html-container b, .swal2-html-container strong { color: #facc15 !important; font-weight: 700 !important; }
 
 /* ── ACTIONS ── */
 .swal2-actions { padding: 0 16px 18px !important; gap: 8px !important; flex-wrap: nowrap !important; }
 
-/* Confirm — Gold */
+/* Confirm — Yellow */
 .swal2-confirm.swal2-styled {
   font-family: 'Poppins', sans-serif !important; font-size: 12.5px !important; font-weight: 700 !important;
   padding: 10px 20px !important; border-radius: 10px !important; border: none !important;
-  background: linear-gradient(135deg, #C59327, #F5D061) !important; color: #111 !important;
-  box-shadow: 0 4px 12px rgba(197, 147, 39, 0.3) !important; transition: transform .15s !important;
+  background: #facc15 !important; color: #012b26 !important;
+  box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3) !important; transition: transform .15s !important;
   outline: none !important;
 }
 .swal2-confirm.swal2-styled:active { transform: scale(.96) !important; }
 .swal2-confirm.swal2-styled[style*="background"] {
-  background: linear-gradient(135deg, #C59327, #F5D061) !important; color: #111 !important;
-  box-shadow: 0 4px 12px rgba(197, 147, 39, 0.3) !important;
+  background: #facc15 !important; color: #012b26 !important;
+  box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3) !important;
 }
 
-/* Cancel — Dark */
+/* Cancel — Subtle Dark Green */
 .swal2-cancel.swal2-styled {
   font-family: 'Poppins', sans-serif !important; font-size: 12.5px !important; font-weight: 700 !important;
   padding: 10px 18px !important; border-radius: 10px !important;
-  background: rgba(255,255,255,0.06) !important; color: rgba(255,255,255,0.6) !important;
+  background: rgba(255,255,255,0.05) !important; color: rgba(255,255,255,0.7) !important;
   border: 1px solid rgba(255,255,255,0.1) !important; box-shadow: none !important; outline: none !important;
   transition: background .15s !important;
 }
@@ -188,7 +188,7 @@ $nama_web = htmlspecialchars($config_web['title'] ?? 'Website');
   color: #fff !important; background: rgba(255,255,255,0.05) !important; box-shadow: none !important; outline: none !important;
   margin: 8px 0 !important; transition: border-color .2s !important; width: calc(100% - 36px) !important;
 }
-.swal2-input:focus, .swal2-textarea:focus { border-color: #F5D061 !important; }
+.swal2-input:focus, .swal2-textarea:focus { border-color: #facc15 !important; }
 .swal2-input::placeholder, .swal2-textarea::placeholder { color: rgba(255,255,255,0.3) !important; }
 
 /* ── VALIDATION MESSAGE ── */
@@ -200,7 +200,7 @@ $nama_web = htmlspecialchars($config_web['title'] ?? 'Website');
 .swal2-validation-message::before { background: #ef4444 !important; }
 
 /* ── TIMER BAR ── */
-.swal2-timer-progress-bar { background: linear-gradient(90deg, #C59327, #F5D061) !important; height: 2px !important; }
+.swal2-timer-progress-bar { background: linear-gradient(90deg, #012b26, #facc15) !important; height: 2px !important; }
 .swal2-timer-progress-bar-container { border-radius: 0 0 16px 16px !important; overflow: hidden !important; }
 
 /* ── FOOTER ── */
