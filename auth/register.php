@@ -245,14 +245,15 @@ body {
 }
 
 /* BUTTON */
-.btn-login {
+.btn-login, .btn-submit {
   width: 100%; background: #012b26; color: #facc15; border: none;
   padding: 14px; border-radius: 12px; font-size: 13px; font-weight: 700;
   display: flex; align-items: center; justify-content: center; gap: 8px;
   margin-top: 10px; cursor: pointer; box-shadow: 0 6px 15px rgba(1,43,38,0.2);
   transition: 0.2s; font-family: 'Poppins', sans-serif;
 }
-.btn-login:active { transform: scale(0.97); }
+.btn-login:active, .btn-submit:active { transform: scale(0.97); }
+.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
 
 .bottom-link { text-align: center; margin-top: 24px; font-size: 11px; font-weight: 500; color: #64748b; }
 .bottom-link a { color: #012b26; font-weight: 700; text-decoration: none; }
