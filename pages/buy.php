@@ -148,151 +148,184 @@ require '../lib/header_user.php';
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: #0A0A0A; color: #fff; font-family: 'Poppins', sans-serif; -webkit-font-smoothing: antialiased; padding-bottom: 90px; }
-.app { max-width: 480px; margin: 0 auto; min-height: 100vh; }
-/* HEADER */
-.bh { display: flex; align-items: center; gap: 12px; padding: 15px 15px 10px; }
-.bh-back { width: 32px; height: 32px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 12px; }
-.bh-title { flex: 1; text-align: center; font-size: 13px; font-weight: 800; color: #fff; padding-right: 32px; }
-/* PRODUCT STRIP */
-.prod-strip { margin: 0 15px 12px; background: linear-gradient(135deg, #C59327 0%, #F5D061 100%); border-radius: 14px; padding: 14px; display: flex; align-items: center; gap: 12px; box-shadow: 0 6px 20px rgba(197, 147, 39, 0.3); }
-.ps-icon { width: 40px; height: 40px; background: #111; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #F5D061; flex-shrink: 0; }
-.ps-info { flex: 1; min-width: 0; }
-.ps-cat { font-size: 9px; font-weight: 700; color: rgba(0,0,0,0.5); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1px; }
-.ps-name { font-size: 13.5px; font-weight: 800; color: #111; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.ps-tags { display: flex; gap: 5px; margin-top: 4px; flex-wrap: wrap; }
-.ps-tag { font-size: 8.5px; font-weight: 700; padding: 2px 7px; border-radius: 20px; background: rgba(0,0,0,0.12); color: #111; }
+body { background: #012b26; color: #fff; font-family: 'Poppins', sans-serif; -webkit-font-smoothing: antialiased; padding-bottom: 100px; }
+.app { max-width: 480px; margin: 0 auto; min-height: 100vh; position: relative;}
+
+/* ====== HEADER ====== */
+.h-bg { background: linear-gradient(135deg, #023e35 0%, #01312b 100%); padding: 25px 20px 90px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; position: relative; box-shadow: 0 8px 25px rgba(0,0,0,0.3); z-index: 1; }
+.h-nav { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+.back-btn { width: 36px; height: 36px; border-radius: 12px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
+.back-btn:active { background: rgba(255,255,255,0.1); }
+.h-title { display: flex; flex-direction: column; }
+.h-title h3 { font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 2px; }
+.h-title p { font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.7); }
+
+/* ====== PRODUCT CARD (OVERLAPPING) ====== */
+.prod-card { background: rgba(250, 204, 21, 0.05); border: 1px solid rgba(250, 204, 21, 0.25); border-radius: 16px; padding: 20px 16px; display: flex; align-items: center; gap: 16px; backdrop-filter: blur(10px); }
+.pc-icon { width: 54px; height: 54px; border-radius: 14px; background: linear-gradient(135deg, #facc15 0%, #ca8a04 100%); display: flex; align-items: center; justify-content: center; font-size: 24px; color: #012b26; flex-shrink: 0; box-shadow: 0 4px 15px rgba(250, 204, 21, 0.4); }
+.pc-info { flex: 1; min-width: 0; }
+.pc-cat { font-size: 10px; font-weight: 800; color: #facc15; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 4px; }
+.pc-name { font-size: 15px; font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; }
+.pc-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.pc-tags span { display: inline-block; font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 20px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.15); }
+
+.c-body { padding: 0 20px; margin-top: -30px; position: relative; z-index: 2; margin-bottom: 20px; }
+
 /* ALERT */
-.b-alert { margin: 0 15px 12px; padding: 10px 12px; border-radius: 12px; display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 600; }
-.b-alert i { font-size: 16px; flex-shrink: 0; }
-.ba-err  { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #F87171; }
-.ba-warn { background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); color: #FCD34D; }
+.b-alert { margin-bottom: 16px; padding: 12px 14px; border-radius: 14px; display: flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 600; line-height: 1.4; }
+.b-alert i { font-size: 18px; flex-shrink: 0; }
+.ba-err  { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; }
+.ba-warn { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); color: #fcd34d; }
+
+/* CARDS */
+.w-card { background: #023e35; border-radius: 20px; padding: 20px; margin-bottom: 16px; border: 1px solid #035246; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.wc-title { font-size: 12px; font-weight: 800; color: #fff; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: 0.5px;}
+.wc-title i { color: #facc15; font-size: 14px; }
+
 /* DETAIL ROWS */
-.detail-box { margin: 0 15px 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 14px; overflow: hidden; }
-.db-head { padding: 10px 14px; border-bottom: 1px dashed rgba(255,255,255,0.07); display: flex; align-items: center; gap: 8px; }
-.db-head i { color: #F5D061; font-size: 12px; }
-.db-head span { font-size: 10.5px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.5px; }
-.d-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px dashed rgba(255,255,255,0.04); }
-.d-row:last-child { border-bottom: none; }
-.d-lbl { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.5); }
-.d-lbl small { display: block; font-size: 9px; color: rgba(255,255,255,0.3); margin-top: 1px; }
-.d-val { font-size: 12.5px; font-weight: 800; color: #fff; }
-.d-val.gold { color: #F5D061; }
-.d-val.green { color: #10B981; }
-/* TOTAL ROW */
-.total-row { margin: 0 15px 15px; background: linear-gradient(135deg, #18181B 0%, #111 100%); border: 1px solid rgba(197,147,39,0.3); border-radius: 14px; padding: 14px; display: flex; justify-content: space-between; align-items: center; }
-.tr-lbl { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; margin-bottom: 3px; }
-.tr-val { font-size: 20px; font-weight: 800; color: #F5D061; }
-.tr-right { text-align: right; }
-.tr-balance { font-size: 9px; font-weight: 600; color: rgba(255,255,255,0.4); }
-.tr-balance span { color: <?= $cukup ? '#10B981' : '#F43F5E' ?>; }
-/* CTA BUTTON */
-.form-wrap { padding: 0 15px; }
-.btn-buy { width: 100%; padding: 15px; border: none; border-radius: 14px; font-size: 13.5px; font-weight: 800; font-family: 'Poppins', sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; text-decoration: none; transition: 0.15s; background: linear-gradient(135deg, #C59327 0%, #F5D061 100%); color: #111; box-shadow: 0 8px 20px rgba(197,147,39,0.3); }
-.btn-buy:active { transform: scale(0.97); }
-.btn-buy.warn { background: linear-gradient(135deg, #B45309 0%, #F59E0B 100%); color: #fff; box-shadow: 0 6px 16px rgba(245,158,11,0.25); }
-.btn-buy.dis { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.3); box-shadow: none; cursor: not-allowed; border: 1px solid rgba(255,255,255,0.08); }
-@keyframes rot { to { transform: rotate(360deg); } }
-.spin { display: inline-block; animation: rot 0.8s linear infinite; }
+.d-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px dashed rgba(255,255,255,0.08); }
+.d-row:last-child { border-bottom: none; padding-bottom: 0; }
+.d-row:first-child { padding-top: 0; }
+.d-lbl { display: flex; flex-direction: column; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.8); }
+.d-lbl small { font-size: 9px; font-weight: 500; color: rgba(255,255,255,0.5); margin-top: 2px; line-height:1.2;}
+.d-val { font-size: 14px; font-weight: 800; color: #fff; text-align: right;}
+.d-val.yellow { color: #facc15; }
+.d-val.green { color: #34d399; }
+
+/* RECEIPT CARD */
+.receipt-card { background: rgba(1, 43, 38, 0.5); border: 1px solid #035246; padding: 16px; }
+.r-head { font-size: 10px; font-weight: 800; color: rgba(255,255,255,0.5); letter-spacing: 1px; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;}
+.r-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.7); }
+.r-row:last-child { margin-bottom: 0; }
+.r-row .val { font-size: 13px; font-weight: 800; color: #fff; text-align: right;}
+.r-row .val.total { font-size: 20px; color: #facc15; }
+.r-row .val.green { color: #34d399; }
+.r-row .val.red { color: #f87171; }
+.divider { height: 1px; background: rgba(255,255,255,0.08); margin: 12px 0; }
+
+/* FIXED BUTTON SUMMARY */
+.fixed-btn-wrap { position: fixed; bottom: 0; left: 0; right: 0; padding: 16px 20px; background: rgba(1, 43, 38, 0.95); backdrop-filter: blur(10px); display: flex; justify-content: center; z-index: 100; border-top: 1px solid rgba(255,255,255,0.05);}
+.fixed-btn-wrap .app-cont { width: 100%; max-width: 440px; }
+.btn-buy { width: 100%; background: #facc15; color: #012b26; border: none; padding: 16px; font-size: 14px; font-weight: 800; border-radius: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 15px rgba(250, 204, 21, 0.25); font-family: 'Poppins', sans-serif; transition: 0.2s; text-decoration: none;}
+.btn-buy:active { transform: scale(0.96); }
+.btn-buy.warn { background: #f59e0b; color: #fff; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.25); }
+.btn-buy.dis { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.4); box-shadow: none; cursor: not-allowed; border: 1px solid rgba(255,255,255,0.1); }
 </style>
 </head>
 <body>
 <div class="app">
 
   <!-- HEADER -->
-  <div class="bh">
-    <a href="javascript:history.back()" class="bh-back"><i class="fa-solid fa-chevron-left"></i></a>
-    <div class="bh-title">Konfirmasi Order</div>
-  </div>
-
-  <!-- PRODUCT STRIP -->
-  <div class="prod-strip">
-    <div class="ps-icon"><i class="fa-solid fa-chart-line"></i></div>
-    <div class="ps-info">
-      <div class="ps-cat"><?= htmlspecialchars($produk['kat_nama'] ?? 'Investasi') ?></div>
-      <div class="ps-name"><?= htmlspecialchars($produk['nama_produk']) ?></div>
-      <div class="ps-tags">
-        <span class="ps-tag"><i class="fa-solid fa-clock" style="margin-right:3px;"></i><?= $masa_aktif ?> Hari</span>
-        <span class="ps-tag"><i class="fa-solid fa-chart-simple" style="margin-right:3px;"></i><?= number_format($roi_pct,1) ?>% ROI</span>
-        <?php if ($is_locked): ?><span class="ps-tag">VIP</span><?php endif; ?>
+  <div class="h-bg">
+    <div class="h-nav">
+      <a href="javascript:history.back()" class="back-btn"><i class="fa-solid fa-chevron-left"></i></a>
+      <div class="h-title">
+        <h3>Konfirmasi Pembelian</h3>
+        <p>Detail produk investasi Anda</p>
+      </div>
+    </div>
+    
+    <div class="prod-card">
+      <div class="pc-icon">
+        <i class="fa-solid fa-chart-pie"></i>
+      </div>
+      <div class="pc-info">
+        <span class="pc-cat"><?= htmlspecialchars($produk['kat_nama'] ?? 'Investasi') ?></span>
+        <h4 class="pc-name"><?= htmlspecialchars($produk['nama_produk']) ?></h4>
+        <div class="pc-tags">
+          <span><i class="fa-solid fa-clock" style="margin-right:2px;"></i> <?= $masa_aktif ?> Hari</span>
+          <span><i class="fa-solid fa-bolt" style="margin-right:2px;"></i> <?= number_format($roi_pct,1) ?>% ROI</span>
+          <?php if ($is_locked): ?><span><i class="fa-solid fa-crown" style="margin-right:2px; color:#facc15;"></i> VIP</span><?php endif; ?>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ALERTS -->
-  <?php if (!$cukup): ?>
-  <div class="b-alert ba-err">
-    <i class="fa-solid fa-circle-exclamation"></i>
-    <div>Saldo tidak cukup. Kurang <b>Rp<?= number_format(abs($saldo_after),0,',','.') ?></b></div>
-  </div>
-  <?php elseif (!$locked_ok): ?>
-  <div class="b-alert ba-warn">
-    <i class="fa-solid fa-lock"></i>
-    <div>Beli <b><?= $to_buy_nama ?></b> terlebih dahulu untuk membuka paket ini.</div>
-  </div>
-  <?php elseif ($max_buy > 0 && $user_buy_count >= $max_buy): ?>
-  <div class="b-alert ba-warn">
-    <i class="fa-solid fa-ban"></i>
-    <div>Batas pembelian tercapai (maks. <?= $max_buy ?>x).</div>
-  </div>
-  <?php endif; ?>
+  <div class="c-body">
 
-  <!-- DETAIL RINCIAN -->
-  <div class="detail-box">
-    <div class="db-head"><i class="fa-solid fa-receipt"></i><span>Rincian Paket</span></div>
-    <div class="d-row">
-      <div class="d-lbl">Harga Paket</div>
-      <div class="d-val">Rp <?= number_format($service_price,0,',','.') ?></div>
-    </div>
-    <div class="d-row">
-      <div class="d-lbl">Profit Harian<small>Diterima setiap hari</small></div>
-      <div class="d-val green">+Rp <?= number_format($profit_harian,0,',','.') ?></div>
-    </div>
-    <div class="d-row">
-      <div class="d-lbl">Masa Aktif</div>
-      <div class="d-val gold"><?= $masa_aktif ?> Hari</div>
-    </div>
-    <div class="d-row">
-      <div class="d-lbl">Total Keuntungan<small>Selama masa aktif</small></div>
-      <div class="d-val green">+Rp <?= number_format($total_profit,0,',','.') ?></div>
-    </div>
-  </div>
-
-  <!-- TOTAL -->
-  <div class="total-row">
-    <div>
-      <div class="tr-lbl">Total Bayar</div>
-      <div class="tr-val">Rp <?= number_format($service_price,0,',','.') ?></div>
-    </div>
-    <div class="tr-right">
-      <div class="tr-balance">Saldo Anda</div>
-      <div class="tr-balance">Rp <span><?= number_format($ubal,0,',','.') ?></span></div>
-      <div class="tr-balance" style="margin-top:2px;">Sisa: <span>Rp <?= number_format(max(0,$saldo_after),0,',','.') ?></span></div>
-    </div>
-  </div>
-
-  <!-- CTA BUTTON -->
-  <div class="form-wrap">
-    <form method="POST" id="bForm">
-      <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
-      <?php if (!$is_syarat && !$locked_ok && $to_buy_id > 0): ?>
-        <a href="<?= base_url('pages/buy?produk_id='.$to_buy_id) ?>" class="btn-buy warn">
-          <i class="fa-solid fa-lock-open"></i> Beli Produk Syarat Dulu
-        </a>
-      <?php elseif (!$cukup): ?>
-        <a href="<?= base_url('pages/deposit') ?>" class="btn-buy warn">
-          <i class="fa-solid fa-plus"></i> Top Up Saldo
-        </a>
+      <!-- ALERTS -->
+      <?php if (!$cukup): ?>
+      <div class="b-alert ba-err">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <div>Saldo Anda tidak mencukupi untuk membeli produk ini. Kurang <b>Rp<?= number_format(abs($saldo_after),0,',','.') ?></b>.</div>
+      </div>
+      <?php elseif (!$locked_ok): ?>
+      <div class="b-alert ba-warn">
+        <i class="fa-solid fa-lock"></i>
+        <div>Silahkan beli produk <b><?= $to_buy_nama ?></b> terlebih dahulu agar paket ini terbuka.</div>
+      </div>
       <?php elseif ($max_buy > 0 && $user_buy_count >= $max_buy): ?>
-        <button type="button" class="btn-buy dis" disabled>
-          <i class="fa-solid fa-ban"></i> Batas Beli Tercapai
-        </button>
-      <?php else: ?>
-        <button type="button" class="btn-buy" id="bBtn">
-          <i class="fa-solid fa-bolt"></i> Konfirmasi & Aktifkan Paket
-        </button>
+      <div class="b-alert ba-warn">
+        <i class="fa-solid fa-ban"></i>
+        <div>Batas pembelian produk ini telah tercapai (maks. <?= $max_buy ?>x).</div>
+      </div>
       <?php endif; ?>
-    </form>
+
+      <!-- DETAIL RINCIAN -->
+      <div class="w-card">
+        <h4 class="wc-title"><i class="fa-solid fa-file-invoice-dollar"></i> Ringkasan Paket</h4>
+        <div class="d-row">
+          <div class="d-lbl">Harga Paket</div>
+          <div class="d-val">Rp <?= number_format($service_price,0,',','.') ?></div>
+        </div>
+        <div class="d-row">
+          <div class="d-lbl">Profit Harian<small>Pendapatan masuk tiap hari</small></div>
+          <div class="d-val green"><span style="font-size:10px;">+</span>Rp <?= number_format($profit_harian,0,',','.') ?></div>
+        </div>
+        <div class="d-row">
+          <div class="d-lbl">Masa Aktif Investasi</div>
+          <div class="d-val yellow"><?= $masa_aktif ?> Hari</div>
+        </div>
+        <div class="d-row">
+          <div class="d-lbl">Total Profit<small>Diperoleh sampai akhir masa aktif</small></div>
+          <div class="d-val green" style="font-size: 16px;"><span style="font-size:12px;">+</span>Rp <?= number_format($total_profit,0,',','.') ?></div>
+        </div>
+      </div>
+
+      <!-- TOTAL BAYAR & SALDO -->
+      <div class="w-card receipt-card">
+        <div class="r-head">SUMBER DANA</div>
+        <div class="r-row">
+          <span>Total Pembayaran</span>
+          <span class="val total">Rp <?= number_format($service_price,0,',','.') ?></span>
+        </div>
+        <div class="divider"></div>
+        <div class="r-row">
+          <span>Saldo Anda Saat Ini</span>
+          <span class="val">Rp <?= number_format($ubal,0,',','.') ?></span>
+        </div>
+        <div class="r-row">
+          <span>Sisa Saldo</span>
+          <span class="val <?= $cukup ? 'green' : 'red' ?>">Rp <?= number_format(max(0,$saldo_after),0,',','.') ?></span>
+        </div>
+      </div>
+
+  </div>
+
+  <!-- FIXED CTA BUTTON -->
+  <div class="fixed-btn-wrap">
+      <div class="app-cont">
+        <form method="POST" id="bForm">
+          <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
+          <?php if (!$is_syarat && !$locked_ok && $to_buy_id > 0): ?>
+            <a href="<?= base_url('pages/buy?produk_id='.$to_buy_id) ?>" class="btn-buy warn">
+              <i class="fa-solid fa-lock-open"></i> Buka Kunci Dulu
+            </a>
+          <?php elseif (!$cukup): ?>
+            <a href="<?= base_url('pages/deposit') ?>" class="btn-buy warn">
+              <i class="fa-solid fa-plus-circle"></i> Tambah Saldo
+            </a>
+          <?php elseif ($max_buy > 0 && $user_buy_count >= $max_buy): ?>
+            <button type="button" class="btn-buy dis" disabled>
+              <i class="fa-solid fa-ban"></i> Terbatas (<?= $max_buy ?>x)
+            </button>
+          <?php else: ?>
+            <button type="button" class="btn-buy" id="bBtn">
+              <i class="fa-solid fa-bolt"></i> Bayar Sekarang
+            </button>
+          <?php endif; ?>
+        </form>
+      </div>
   </div>
 
 </div>
@@ -303,7 +336,7 @@ var bForm= document.getElementById('bForm');
 if(bBtn) {
   bBtn.onclick = function() {
     this.disabled = true; this.style.opacity = '0.7';
-    this.innerHTML = ' <span class="spin">↻</span> Memproses...';
+    this.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Memproses...';
     bForm.submit();
   }
 }

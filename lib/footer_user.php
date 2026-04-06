@@ -45,21 +45,21 @@ if (isset($_SESSION['result'])) {
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-/* ===== MINIMALIST BOTTOM NAV (Premium Gold & Black) ===== */
+/* ===== MINIMALIST BOTTOM NAV (Green & Yellow) ===== */
 .vnav {
   position: fixed;
   bottom: 0; left: 50%;
   transform: translateX(-50%);
   width: 100%; max-width: 480px;
-  background: linear-gradient(135deg, #C59327 0%, #F5D061 30%, #F8E28B 50%, #C59327 80%, #9C7012 100%);
+  background: #023e35;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border-top: 1px solid rgba(255,255,255,0.4);
+  border-top: 1px solid #012b26;
   z-index: 500;
   padding-bottom: env(safe-area-inset-bottom, 0);
-  box-shadow: 0 -8px 25px rgba(197, 147, 39, 0.3);
-  height: 65px;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+  height: 68px;
 }
 
 .vnav-tab {
@@ -70,8 +70,8 @@ if (isset($_SESSION['result'])) {
   justify-content: center;
   gap: 4px;
   text-decoration: none;
-  color: rgba(17, 17, 17, 0.75);
-  font-size: 10px;
+  color: rgba(255,255,255,0.6);
+  font-size: 11px;
   font-weight: 600;
   font-family: 'Poppins', sans-serif;
   transition: all .2s ease-in-out;
@@ -79,13 +79,14 @@ if (isset($_SESSION['result'])) {
 }
 
 .vnav-tab .icon-box {
-  width: 38px;
-  height: 38px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
+  border-radius: 10px;
   transition: all 0.2s ease;
+  color: rgba(255,255,255,0.6);
 }
 
 .vnav-tab i {
@@ -93,21 +94,16 @@ if (isset($_SESSION['result'])) {
 }
 
 .vnav-tab.active {
-  color: #111;
-  font-weight: 700;
+  color: #facc15;
+  font-weight: 800;
 }
 
 .vnav-tab.active .icon-box {
-  background: linear-gradient(135deg, #1A1A1A 0%, #000000 100%);
-  border: 1px solid rgba(17, 17, 17, 0.2);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  background: rgba(250, 204, 21, 0.1);
+  color: #facc15;
 }
 
 .vnav-tab.active i {
-  background: linear-gradient(135deg, #F8E28B 0%, #C59327 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: #F8E28B; /* Fallback */
   text-shadow: none;
 }
 </style>
@@ -117,13 +113,17 @@ if (isset($_SESSION['result'])) {
     <div class="icon-box"><i class="fa-solid fa-house"></i></div>
     <span>Beranda</span>
   </a>
-  <a href="<?= base_url('pages/product') ?>" class="vnav-tab" data-page="product">
-    <div class="icon-box"><i class="fa-solid fa-star"></i></div>
-    <span>Produk</span>
+  <a href="<?= base_url('pages/plans') ?>" class="vnav-tab" data-page="plans">
+    <div class="icon-box"><i class="fa-solid fa-layer-group"></i></div>
+    <span>Investasi</span>
   </a>
   <a href="<?= base_url('pages/agent') ?>" class="vnav-tab" data-page="agent">
     <div class="icon-box"><i class="fa-solid fa-users"></i></div>
-    <span>Tim</span>
+    <span>Referral</span>
+  </a>
+  <a href="<?= base_url('pages/forum') ?>" class="vnav-tab" data-page="forum">
+    <div class="icon-box"><i class="fa-solid fa-comments"></i></div>
+    <span>Forum</span>
   </a>
   <a href="<?= base_url('pages/profile') ?>" class="vnav-tab" data-page="profile">
     <div class="icon-box"><i class="fa-solid fa-user"></i></div>
@@ -159,7 +159,7 @@ if (isset($_SESSION['result'])) {
           confirmButtonText: 'Keluar',
           cancelButtonText: 'Batal',
           reverseButtons: true,
-          confirmButtonColor: '#C59A25', // Gold
+          confirmButtonColor: '#10b981', // Green
           background: '#ffffff',
           color: '#1E293B',
           customClass: {

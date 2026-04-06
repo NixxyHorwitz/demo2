@@ -14,6 +14,10 @@ $AVAILABLE_METHODS = [
     'OVO'       => 'OVO',
     'GOPAY'     => 'GoPay',
     'SHOPEE'    => 'ShopeePay',
+    'BCA'       => 'Bank BCA',
+    'MANDIRI'   => 'Bank Mandiri',
+    'BRI'       => 'Bank BRI',
+    'BNI'       => 'Bank BNI'
 ];
 
 /* ══════════════════════════════════════════════
@@ -33,6 +37,7 @@ $has_rek     = !empty($rek_code) && !empty($rek_no);
    ACTION: SAVE BANK
 ══════════════════════════════════════════════ */
 $bank_result = null;
+$show_form   = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'save_bank') {
     if ($has_rek) {
@@ -79,9 +84,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                 $bank_result = ['ok' => false, 'msg' => 'Rekening sudah terdaftar. Tidak dapat mengubah data.'];
             } else {
                 $bank_result = ['ok' => false, 'msg' => 'Gagal menyimpan rekening. Coba lagi.'];
+                $show_form = true;
             }
         } else {
             $bank_result = ['ok' => false, 'msg' => implode(' ', $b_errors)];
+            $show_form = true;
         }
     }
 }
@@ -92,247 +99,233 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Rekening Bank</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { 
-    font-family: 'Poppins', sans-serif; 
-    background-color: #111111; 
-    color: #fff; -webkit-font-smoothing: antialiased; 
-}
-.app { 
-    max-width: 480px; margin: 0 auto; min-height: 100vh; position: relative;
-    background-color: #111111;
-    background-image: 
-      linear-gradient(45deg, rgba(255,255,255,0.02) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.02) 75%, rgba(255,255,255,0.02)), 
-      linear-gradient(45deg, rgba(255,255,255,0.02) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.02) 75%, rgba(255,255,255,0.02));
-    background-size: 40px 40px;
-    background-position: 0 0, 20px 20px;
-    padding-bottom: 40px;
-}
+body { font-family: 'Poppins', sans-serif; background: #012b26; color: #fff; -webkit-font-smoothing: antialiased; }
+.app { max-width: 480px; margin: 0 auto; min-height: 100vh; position: relative; background: #012b26; padding-bottom: 40px; }
 
 /* HEADER */
-.th-container { padding: 20px; display: flex; align-items: center; justify-content: flex-start; gap: 15px;}
-.th-back { 
-    display: flex; align-items: center; justify-content: center; 
-    width: 36px; height: 36px; background: rgba(255,255,255,0.08); 
-    border-radius: 10px; color: #fff; text-decoration: none; 
-}
-.th-back svg { width: 18px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; }
-.th-title { font-size: 16px; font-weight: 700; color: #fff;}
+.h-bg { background: linear-gradient(135deg, #023e35 0%, #01312b 100%); padding: 25px 20px 100px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; position: relative; box-shadow: 0 8px 25px rgba(0,0,0,0.3); z-index: 1; }
+.h-nav { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+.back-btn { width: 36px; height: 36px; border-radius: 12px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
+.back-btn:active { background: rgba(255,255,255,0.1); }
+.h-title { display: flex; flex-direction: column; }
+.h-title h3 { font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 2px; }
+.h-title p { font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.7); }
 
-.content-area { padding: 0 20px; }
+.h-card { background: transparent; border: 1px solid rgba(250,204,21,0.25); border-radius: 16px; padding: 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.hc-left { display: flex; align-items: center; gap: 12px; }
+.hc-icon { width: 42px; height: 42px; border-radius: 10px; background: rgba(250,204,21,0.1); display: flex; align-items: center; justify-content: center; color: #facc15; font-size: 18px; }
+.hc-texts { display: flex; flex-direction: column; }
+.hc-lbl { font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px;}
+.hc-val { font-size: 16px; font-weight: 800; color: #fff; line-height: 1; }
+.hc-add { background: #fff; color: #012b26; border: none; padding: 10px 16px; font-size: 11px; font-weight: 700; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: 0.2s; }
+.hc-add:active { transform: scale(0.95); }
+.hc-add i { font-size: 12px; }
 
-/* TOP INFO CARD */
-.info-card {
-    background: linear-gradient(135deg, #18181B 0%, #000000 100%); border: 1px solid #333;
-    border-radius: 12px; padding: 12px 16px; margin-bottom: 20px;
-    display: flex; align-items: center; justify-content: flex-start; gap: 14px;
-}
-.ic-icon {
-    width: 44px; height: 44px; background: rgba(245, 208, 97, 0.15); border-radius: 10px;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #F5D061; border: 1px solid rgba(245, 208, 97, 0.3);
-}
-.ic-icon svg { width: 22px; stroke: currentColor; fill: none; stroke-width: 2; }
-.ic-text { flex: 1; display:flex; flex-direction:column; gap:2px; }
-.ic-title { font-size: 13px; font-weight: 700; color: #F5D061; }
-.ic-desc { font-size: 10px; color: #9ca3af; font-weight: 500; }
+/* MAIN CONTENT */
+.c-body { padding: 0 20px; margin-top: -65px; position: relative; z-index: 2; }
+.v-card { background: #023e35; border-radius: 20px; padding: 30px 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); border: 1px solid #035246; text-align: center; }
 
-/* FORM CARD */
-.form-card {
-    background: linear-gradient(135deg, #18181B 0%, #000000 100%); border: 1px solid #333;
-    border-radius: 16px; padding: 16px; margin-bottom: 20px;
-}
+/* EMPTY STATE */
+.es-icon { width: 56px; height: 56px; border-radius: 16px; background: rgba(255,255,255,0.05); display: inline-flex; align-items: center; justify-content: center; font-size: 24px; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
+.es-title { font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+.es-desc { font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.6); line-height: 1.5; margin-bottom: 24px; }
+.btn-primary { background: #facc15; color: #012b26; border: none; padding: 14px; font-size: 13px; font-weight: 800; border-radius: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; box-shadow: 0 4px 15px rgba(250, 204, 21, 0.2); transition: 0.2s; }
+.btn-primary:active { transform: scale(0.97); }
 
-/* Form Section Header */
-.fs-head {
-    display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
-}
-.fs-icon {
-    width: 36px; height: 36px; background: linear-gradient(135deg, #C59327 0%, #F5D061 50%, #9C7012 100%); border-radius: 8px;
-    display: flex; align-items: center; justify-content: center; color: #111;
-}
-.fs-icon svg { width: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
-.fs-title { font-size: 14.5px; font-weight: 700; color: #fff; }
+/* LISTED BANK */
+.lb-icon { width: 56px; height: 56px; border-radius: 16px; background: rgba(250, 204, 21, 0.1); display: inline-flex; align-items: center; justify-content: center; font-size: 24px; color: #facc15; margin-bottom: 16px; border: 1px solid rgba(250, 204, 21, 0.2); }
+.lb-info { display: flex; flex-direction: column; align-items: flex-start; background: #012b26; border: 1px solid rgba(250,204,21,0.1); padding: 16px; border-radius: 14px; text-align: left; margin-bottom: 0;}
+.lb-info div { display: flex; flex-direction: column; width: 100%; margin-bottom: 12px; }
+.lb-info div:last-child { margin-bottom: 0; }
+.lb-lbl { font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; margin-bottom: 4px;}
+.lb-val { font-size: 13px; font-weight: 800; color: #fff; }
 
-/* Form Group */
-.form-group { margin-bottom: 16px; }
-.form-lbl {
-    display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; 
-    color: #fff; margin-bottom: 8px;
-}
-.form-lbl svg { width: 13px; stroke: #F5D061; fill: none; stroke-width: 2.5; }
+/* FORM WRAPPER */
+.f-card { background: #023e35; border-radius: 20px; padding: 20px; margin-bottom: 16px; border: 1px solid #035246; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.f-group { margin-bottom: 16px; display: flex; flex-direction: column; }
+.f-group:last-child { margin-bottom: 0; }
+.f-lbl { font-size: 11px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+.f-inp, .f-sel { width: 100%; background: #012b26; border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 12px; font-size: 13px; font-weight: 500; color: #fff; outline: none; font-family: 'Poppins', sans-serif; transition: 0.2s;}
+.f-inp:focus, .f-sel:focus { border-color: #facc15; }
+.f-sel { appearance: none; cursor: pointer; }
+.f-sel-wrap { position: relative; }
+.f-sel-icon { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.5); pointer-events: none; font-size: 12px; }
 
-.input-wrap { position: relative; }
-.form-input, .form-select {
-    width: 100%; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 8px; padding: 12px 14px; font-size: 13px; font-weight: 500; color: #fff;
-    outline: none; font-family: 'Poppins', sans-serif; transition: 0.2s;
-}
-.form-input:focus, .form-select:focus { border-color: #F5D061; }
-.form-input::placeholder { color: #6b7280; }
-.form-select { appearance: none; color: #e5e7eb; cursor: pointer;}
-.input-wrap .trailing-icon {
-    position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
-    background: rgba(255,255,255,0.05); border-radius: 6px; width: 28px; height: 28px;
-    display: flex; align-items: center; justify-content: center; color: #F5D061; pointer-events: none;
-}
-.trailing-icon svg { width: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+/* WARNING BOX */
+.warn-box { background: rgba(250, 204, 21, 0.05); border: 1px solid rgba(250, 204, 21, 0.2); border-radius: 16px; padding: 16px; display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px;}
+.wb-icon { width: 24px; height: 24px; border-radius: 50%; background: #facc15; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: #012b26; flex-shrink: 0; }
+.wb-text { flex: 1; }
+.wb-title { font-size: 12px; font-weight: 800; color: #facc15; margin-bottom: 6px; }
+.wb-list { padding-left: 14px; margin: 0;}
+.wb-list li { font-size: 10px; color: rgba(255,255,255,0.7); margin-bottom: 4px; font-weight: 500; }
+.wb-list li:last-child { margin-bottom: 0; }
 
-/* Readonly Input Styling to match Locked state */
-.form-input[readonly] { color: #9ca3af; pointer-events: none;}
+/* ACTIONS */
+.f-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 14px; font-size: 13px; font-weight: 800; border-radius: 14px; cursor: pointer; text-align: center; }
 
-/* Default Box */
-.default-box {
-    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px; padding: 15px; margin-bottom: 20px;
-    display: flex; align-items: center; justify-content: space-between; gap: 15px;
-}
-.db-icon {
-    width: 32px; height: 32px; background: rgba(245, 208, 97, 0.15); border-radius: 8px;
-    display: flex; align-items: center; justify-content: center; color: #F5D061; flex-shrink: 0;
-}
-.db-icon svg { width: 16px; stroke: currentColor; fill: none; stroke-width: 2.5; }
-.db-text { flex: 1; display:flex; flex-direction:column; }
-.db-title { font-size: 12px; font-weight: 700; color: #fff; }
-.db-desc { font-size: 9.5px; color: #9ca3af; }
-.db-toggle { width: 44px; height: 24px; background: #F5D061; border-radius: 14px; position: relative; }
-.db-toggle::after { content: ''; position: absolute; top: 2px; right: 2px; width: 20px; height: 20px; background: #111; border-radius: 50%; }
-
-/* Button */
-.btn-submit {
-    display: block; width: 100%; background: linear-gradient(135deg, #C59327 0%, #F5D061 50%, #9C7012 100%); border-radius: 10px;
-    padding: 14px; color: #111; font-size: 14px; font-weight: 800; font-family: 'Poppins', sans-serif;
-    border: none; outline: none; cursor: pointer; transition: 0.2s;
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-}
-.btn-submit:active { transform: scale(0.98); }
-.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-.btn-submit svg { width: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
-
-/* Security Box */
-.security-box {
-    background: rgba(245, 208, 97, 0.05); border: 1px solid rgba(245, 208, 97, 0.2);
-    border-radius: 12px; padding: 16px; display: flex; align-items: flex-start; gap: 12px;
-}
-.sb-icon {
-    width: 24px; height: 24px; background: rgba(245, 208, 97, 0.15); border-radius: 6px;
-    display: flex; align-items: center; justify-content: center; color: #F5D061; flex-shrink: 0;
-}
-.sb-icon svg { width: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
-.sb-text { flex: 1; }
-.sb-title { font-size: 11px; font-weight: 600; color: #F5D061; margin-bottom: 2px; }
-.sb-desc { font-size: 9.5px; color: #9ca3af; line-height: 1.5; }
-
-/* Alert Box */
-.alert-box { padding: 12px; border-radius: 8px; font-size: 11.5px; text-align: center; margin-bottom: 16px; font-weight: 500; }
-.alert-box.err { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; }
-.alert-box.ok  { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); color: #6ee7b7; }
+/* ALERT */
+.alert { padding: 14px; border-radius: 14px; font-size: 11px; font-weight: 600; text-align: center; margin-bottom: 16px; }
+.alert.ok { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); color: #34d399; }
+.alert.err { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); color: #f87171; }
 </style>
 </head>
 <body>
 <div class="app">
 
-    <!-- HEADER -->
-    <div class="th-container">
-        <a href="<?= base_url('pages/profile') ?>" class="th-back">
-            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-        </a>
-        <div class="th-title">Rekening Bank</div>
-    </div>
-
-    <!-- CONTENT -->
-    <div class="content-area">
-
-        <!-- TOP INFO CARD -->
-        <div class="info-card">
-            <div class="ic-icon"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg></div>
-            <div class="ic-text">
-                <div class="ic-title">Hubungkan Rekening Bank</div>
-                <div class="ic-desc">Rekening bank digunakan untuk penarikan dana investasi Anda</div>
+    <!-- HEADER CURVED -->
+    <div class="h-bg">
+        <div class="h-nav">
+            <a href="<?= base_url('pages/profile') ?>" class="back-btn"><i class="fa-solid fa-chevron-left"></i></a>
+            <div class="h-title" id="head-title">
+                <h3>Rekening bank</h3>
+                <p>Kelola rekening & e-wallet</p>
             </div>
         </div>
-
-        <?php if ($bank_result): ?>
-            <div class="alert-box <?= $bank_result['ok'] ? 'ok' : 'err' ?>">
-                <?= htmlspecialchars($bank_result['msg']) ?>
-            </div>
-        <?php endif; ?>
-
-        <?php if ($has_rek): ?>
-            <div class="alert-box ok" style="margin-bottom:15px;">Akun telah tertaut dan dikunci.</div>
-        <?php endif; ?>
-
-        <form method="POST">
-            <?php if(!$has_rek): ?>
-            <input type="hidden" name="action" value="save_bank">
-            <?php endif; ?>
-            
-            <div class="form-card">
-                <div class="fs-head">
-                    <div class="fs-icon"><svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg></div>
-                    <div class="fs-title">Informasi Rekening</div>
+        <div class="h-card">
+            <div class="hc-left">
+                <div class="hc-icon"><i class="fa-regular fa-credit-card"></i></div>
+                <div class="hc-texts">
+                    <span class="hc-lbl">TERDAFTAR</span>
+                    <h4 class="hc-val"><?= $has_rek ? '1' : '0' ?></h4>
                 </div>
+            </div>
+            <?php if(!$has_rek): ?>
+            <button class="hc-add" id="btn-add-top" onclick="showForm()"><i class="fa-solid fa-plus"></i> Tambah</button>
+            <?php endif; ?>
+        </div>
+    </div>
 
-                <div class="form-group">
-                    <div class="form-lbl"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Nama Lengkap Pemilik Rekening</div>
-                    <div class="input-wrap">
-                        <input type="text" class="form-input" <?= $has_rek?'readonly':'' ?> name="nama_pemilik" value="<?= htmlspecialchars($has_rek?$rek_pemilik:$usnnya) ?>" placeholder="Masukkan nama sesuai buku rekening" required>
-                        <div class="trailing-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
+    <!-- MAIN CONTENT -->
+    <div class="c-body">
+        
+        <?php if ($bank_result): ?>
+        <div class="alert <?= $bank_result['ok'] ? 'ok' : 'err' ?>">
+            <?= htmlspecialchars($bank_result['msg']) ?>
+        </div>
+        <?php endif; ?>
+
+        <!-- VIEW: LIST -->
+        <div id="v-list" style="display: <?= ($has_rek || !$show_form && !$bank_result) ? 'block' : 'none' ?>;">
+            <?php if(!$has_rek): ?>
+            <div class="v-card" style="padding: 40px 20px;">
+                <div class="es-icon"><i class="fa-regular fa-credit-card"></i></div>
+                <div class="es-title">Belum ada rekening</div>
+                <div class="es-desc">Tambahkan bank atau e-wallet untuk penarikan dana dengan mudah</div>
+                <button class="btn-primary" onclick="showForm()">Tambah rekening</button>
+            </div>
+            <?php else: ?>
+            <div class="v-card">
+                <div class="lb-icon"><i class="fa-solid fa-building-columns"></i></div>
+                <div class="es-title" style="margin-bottom: 20px;">Rekening Anda</div>
+                
+                <div class="lb-info">
+                    <div>
+                        <span class="lb-lbl">Bank / E-Wallet</span>
+                        <span class="lb-val"><?= htmlspecialchars($AVAILABLE_METHODS[$rek_code] ?? $rek_code) ?></span>
+                    </div>
+                    <div>
+                        <span class="lb-lbl">Nomor Rekening / HP</span>
+                        <span class="lb-val"><?= htmlspecialchars($rek_no) ?></span>
+                    </div>
+                    <div>
+                        <span class="lb-lbl">Nama Pemilik</span>
+                        <span class="lb-val"><?= htmlspecialchars($rek_pemilik) ?></span>
                     </div>
                 </div>
+            </div>
+            <?php endif; ?>
+        </div>
 
-                <div class="form-group">
-                    <div class="form-lbl"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg> Pilih Bank</div>
-                    <div class="input-wrap">
-                        <?php if($has_rek): ?>
-                            <input type="text" class="form-input" readonly value="<?= htmlspecialchars($AVAILABLE_METHODS[$rek_code] ?? $rek_code) ?>">
-                        <?php else: ?>
-                            <select name="metode" class="form-select" required>
-                                <option value="" hidden>-- Pilih Bank Tujuan --</option>
+        <!-- VIEW: FORM -->
+        <div id="v-form" style="display: <?= (!$has_rek && ($show_form || isset($_GET['action']))) ? 'block' : 'none' ?>;">
+            <form method="POST">
+                <input type="hidden" name="action" value="save_bank">
+                
+                <div class="f-card">
+                    <div class="f-group">
+                        <label class="f-lbl">Bank / e-wallet</label>
+                        <div class="f-sel-wrap">
+                            <select name="metode" class="f-sel" required>
+                                <option value="" hidden>Pilih bank atau e-wallet</option>
                                 <?php foreach ($AVAILABLE_METHODS as $code => $label): ?>
                                 <option value="<?= $code ?>"><?= htmlspecialchars($label) ?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <div class="trailing-icon" style="color:#9ca3af; border:none; background:none;"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
-                        <?php endif; ?>
+                            <i class="fa-solid fa-chevron-down f-sel-icon"></i>
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="form-lbl"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg> Nomor Rekening</div>
-                    <div class="input-wrap">
-                        <input type="text" class="form-input" <?= $has_rek?'readonly':'' ?> name="rekening" inputmode="numeric" value="<?= htmlspecialchars($rek_no) ?>" placeholder="Masukkan nomor rekening" required>
-                        <div class="trailing-icon"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg></div>
+                <div class="f-card">
+                    <div class="f-group">
+                        <label class="f-lbl">Nomor rekening / HP</label>
+                        <input type="text" name="rekening" class="f-inp" inputmode="numeric" placeholder="Nomor rekening atau nomor HP e-wallet" required>
                     </div>
                 </div>
 
-                <div class="default-box">
-                    <div class="db-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
-                    <div class="db-text">
-                        <div class="db-title">Jadikan Default</div>
-                        <div class="db-desc">Gunakan untuk semua penarikan</div>
+                <div class="f-card">
+                    <div class="f-group">
+                        <label class="f-lbl">Nama pemilik</label>
+                        <input type="text" name="nama_pemilik" class="f-inp" placeholder="Sesuai di buku tabungan / e-wallet" required>
                     </div>
-                    <div class="db-toggle"></div>
                 </div>
 
-                <button type="submit" class="btn-submit" <?= $has_rek?'disabled':'' ?> onclick="<?= $has_rek?'':'if(this.form.checkValidity()){ this.innerHTML=\'Memproses...\'; this.form.submit(); this.disabled=true; }' ?>">
-                    <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
-                    <?= $has_rek ? 'Akun Anda Telah Dikunci' : 'Simpan Rekening' ?>
-                </button>
-            </div>
-        </form>
+                <div class="warn-box">
+                    <div class="wb-icon"><i class="fa-solid fa-info"></i></div>
+                    <div class="wb-text">
+                        <div class="wb-title">Perhatian</div>
+                        <ul class="wb-list">
+                            <li>Pastikan nomor benar sebelum simpan</li>
+                            <li>Nama harus sesuai identitas</li>
+                            <li>Rekening / akun harus aktif</li>
+                        </ul>
+                    </div>
+                </div>
 
-        <!-- SECURITY BOX -->
-        <div class="security-box">
-            <div class="sb-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
-            <div class="sb-text">
-                <div class="sb-title">Keamanan Data Terjamin</div>
-                <div class="sb-desc">Data rekening bank Anda dienkripsi dan dilindungi. Kami tidak akan membagikan informasi Anda kepada pihak ketiga.</div>
-            </div>
+                <div class="f-actions">
+                    <button type="button" class="btn-outline" onclick="showList()">Batal</button>
+                    <button type="submit" class="btn-primary">Simpan</button>
+                </div>
+            </form>
         </div>
 
     </div>
 </div>
+
+<script>
+const hasRek = <?= $has_rek ? 'true' : 'false' ?>;
+
+function showForm() {
+    if(hasRek) return;
+    document.getElementById('v-list').style.display = 'none';
+    document.getElementById('v-form').style.display = 'block';
+    document.getElementById('btn-add-top').style.display = 'none';
+    
+    document.querySelector('#head-title h3').innerText = 'Tambah rekening';
+    document.querySelector('#head-title p').innerText = 'Data untuk penarikan dana';
+}
+
+function showList() {
+    document.getElementById('v-list').style.display = 'block';
+    document.getElementById('v-form').style.display = 'none';
+    if(document.getElementById('btn-add-top')) {
+        document.getElementById('btn-add-top').style.display = 'flex';
+    }
+    
+    document.querySelector('#head-title h3').innerText = 'Rekening bank';
+    document.querySelector('#head-title p').innerText = 'Kelola rekening & e-wallet';
+}
+
+// Initial state binding if validation failed
+<?php if(isset($_POST['action']) && !$bank_result['ok'] && !$has_rek): ?>
+    showForm();
+<?php endif; ?>
+</script>
+<?php require '../lib/footer_user.php'; ?>
 </body>
 </html>

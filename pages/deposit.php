@@ -229,228 +229,140 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'depos
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { 
-    font-family: 'Poppins', sans-serif; 
-    background-color: #111111; 
-    color: #fff; -webkit-font-smoothing: antialiased; 
-}
-.app { 
-    max-width: 480px; margin: 0 auto; min-height: 100vh; position: relative;
-    background-color: #111111;
-    background-image: 
-      linear-gradient(45deg, rgba(255,255,255,0.02) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.02) 75%, rgba(255,255,255,0.02)), 
-      linear-gradient(45deg, rgba(255,255,255,0.02) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.02) 75%, rgba(255,255,255,0.02));
-    background-size: 40px 40px;
-    background-position: 0 0, 20px 20px;
-    padding-bottom: 40px;
-}
+body { font-family: 'Poppins', sans-serif; background: #012b26; color: #fff; -webkit-font-smoothing: antialiased; }
+.app { max-width: 480px; margin: 0 auto; min-height: 100vh; position: relative; background: #012b26; padding-bottom: 90px; }
 
 /* HEADER */
-.th-container { padding: 20px; display: flex; align-items: center; justify-content: flex-start; gap: 15px;}
-.th-back, .th-history { 
-    display: flex; align-items: center; justify-content: center; 
-    width: 36px; height: 36px; background: rgba(255,255,255,0.08); 
-    border-radius: 10px; color: #fff; text-decoration: none; 
-}
-.th-history { width: auto; padding: 0 12px; font-size: 11px; font-weight: 600; gap: 6px; margin-left: auto; border: 1px solid rgba(255,255,255,0.15);}
-.th-back svg { width: 18px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; }
-.th-history svg { width: 14px; stroke: currentColor; fill: none; stroke-width: 2.5; }
-.th-title { font-size: 16px; font-weight: 700; color: #fff;}
+.h-bg { background: linear-gradient(135deg, #023e35 0%, #01312b 100%); padding: 25px 20px 100px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; position: relative; box-shadow: 0 8px 25px rgba(0,0,0,0.3); z-index: 1; }
+.h-nav { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+.back-btn { width: 36px; height: 36px; border-radius: 12px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
+.back-btn:active { background: rgba(255,255,255,0.1); }
+.h-title { display: flex; flex-direction: column; }
+.h-title h3 { font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 2px; }
+.h-title p { font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.7); }
 
-.content-area { padding: 0 20px; }
+/* TOP INPUT CARD */
+.ti-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(250,204,21,0.25); border-radius: 16px; padding: 20px 16px; display: flex; flex-direction: column; }
+.ti-card label { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 12px;}
+.ti-wrap { display: flex; align-items: center; border-bottom: 2px solid rgba(255,255,255,0.1); padding-bottom: 8px; margin-bottom: 12px; transition: 0.2s; }
+.ti-wrap.focus { border-color: #facc15; }
+.ti-wrap span { font-size: 24px; font-weight: 800; color: rgba(255,255,255,0.5); margin-right: 12px; }
+.ti-input { flex: 1; min-width: 0; background: none; border: none; font-size: 36px; font-weight: 800; color: #fff; outline: none; font-family: 'Poppins', sans-serif;}
+.ti-input::placeholder { color: rgba(255,255,255,0.1); }
+.ti-card small { font-size: 10px; color: rgba(255,255,255,0.5); font-weight: 500; }
 
-/* MAIN CARD */
-.form-card {
-    background: linear-gradient(135deg, #18181B 0%, #000000 100%); border: 1px solid #333;
-    border-radius: 16px; padding: 16px; margin-bottom: 20px;
-}
+.c-body { padding: 0 20px; margin-top: -65px; position: relative; z-index: 2; }
+.w-card { background: #023e35; border-radius: 20px; padding: 20px; margin-bottom: 16px; border: 1px solid #035246; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.wc-title { font-size: 12px; font-weight: 800; color: #fff; margin-bottom: 14px; }
 
-.fc-head { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
-.fc-icon { width: 36px; height: 36px; background: linear-gradient(135deg, #C59327 0%, #F5D061 50%, #9C7012 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #111;}
-.fc-icon svg { width: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
-.fc-title { font-size: 14.5px; font-weight: 700; color: #fff; }
+/* PILLS */
+.quick-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.qp-btn { flex: 1; min-width: 60px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 12px; padding: 12px 0; font-size: 12px; font-weight: 600; cursor: pointer; transition: 0.2s; font-family: 'Poppins', sans-serif; text-align: center; }
+.qp-btn:active, .qp-btn.active { background: rgba(250, 204, 21, 0.15); border-color: #facc15; color: #facc15; }
 
-.form-group { margin-bottom: 16px; }
-.form-lbl {
-    display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; 
-    color: #fff; margin-bottom: 8px;
-}
-.form-lbl svg { width: 13px; stroke: #F5D061; fill: none; stroke-width: 2.5; }
+/* PAYMENT METHOD */
+.pm-card { background: rgba(250, 204, 21, 0.05); border: 1px solid #facc15; border-radius: 14px; padding: 16px; display: flex; align-items: center; justify-content: space-between; gap: 14px; cursor: pointer;}
+.pm-left { display: flex; align-items: center; gap: 12px; }
+.pm-logo { background: #fff; padding: 6px; border-radius: 8px; display:flex; align-items:center; justify-content:center; }
+.pm-logo img { height: 18px; object-fit: contain;}
+.pm-name { font-size: 14px; font-weight: 800; color: #fff; }
+.pm-radio { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #facc15; display: flex; align-items: center; justify-content: center; color: #facc15;}
+.pm-radio i { font-size: 10px; }
 
-/* CUSTOM SELECTOR */
-.custom-select-wrapper { position: relative; margin-bottom: 16px; }
-.method-grp {
-    background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 8px; padding: 14px; cursor: pointer;
-    display: flex; align-items: center; justify-content: space-between;
-    color: #F5D061; font-size: 13px; font-weight: 600;
-}
-.method-grp.active { border-color: #F5D061; }
-.mg-text { flex: 1; user-select: none; }
-.method-grp i { font-size: 14px; pointer-events: none; transition: transform 0.3s; }
-.method-grp.active i { transform: rotate(180deg); }
+/* WARNING BOX */
+.warn-box { background: rgba(250, 204, 21, 0.05); border: 1px solid rgba(250, 204, 21, 0.2); border-radius: 16px; padding: 16px; display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px;}
+.wb-icon { width: 24px; height: 24px; border-radius: 50%; background: #facc15; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: #012b26; flex-shrink: 0; }
+.wb-text { flex: 1; }
+.wb-title { font-size: 12px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+.wb-list { padding-left: 14px; margin: 0;}
+.wb-list li { font-size: 10.5px; color: rgba(255,255,255,0.7); margin-bottom: 6px; font-weight: 500; line-height: 1.4;}
+.wb-list li:last-child { margin-bottom: 0; }
 
-.method-dropdown {
-    position: absolute; left: 0; right: 0; top: 100%;
-    background: #18181B; border: 1px solid #333; border-radius: 8px;
-    margin-top: 5px; max-height: 0; overflow-y: auto; opacity: 0; pointer-events: none;
-    transition: max-height 0.3s ease, opacity 0.3s ease; z-index: 99; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-}
-.method-dropdown.open { max-height: 250px; opacity: 1; pointer-events: auto; }
-.md-item {
-    padding: 12px 14px; font-size: 12.5px; color: #9ca3af; cursor: pointer;
-    border-bottom: 1px solid #333; transition: 0.2s; font-weight: 500;
-}
-.md-item:last-child { border-bottom: none; }
-.md-item:hover, .md-item.active { background: #000; color: #F5D061; font-weight: 600; }
+/* ACTIONS */
+.fixed-btn-wrap { position: fixed; bottom: 0; left: 0; right: 0; padding: 16px 20px; background: rgba(1, 43, 38, 0.9); backdrop-filter: blur(10px); display: flex; justify-content: center; z-index: 100;}
+.fixed-btn-wrap .app-cont { width: 100%; max-width: 440px; }
+.btn-primary { width: 100%; background: #facc15; color: #012b26; border: none; padding: 16px; font-size: 14px; font-weight: 800; border-radius: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 15px rgba(250, 204, 21, 0.25); font-family: 'Poppins', sans-serif; transition: 0.2s;}
+.btn-primary:active { transform: scale(0.96); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
 
-/* INPUT BOX */
-.input-wrap { position: relative; display: flex; align-items: center; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 0 14px;}
-.input-wrap .curr { font-size: 13px; font-weight: 700; color: #F5D061; margin-right: 8px; }
-.form-input {
-    flex: 1; background: transparent; border: none; padding: 14px 0; font-size: 14px; font-weight: 600; color: #fff;
-    outline: none; font-family: 'Poppins', sans-serif;
-}
-.form-input::placeholder { color: #6b7280; font-weight: 500;}
-.input-wrap.focus { border-color: #F5D061; }
-
-/* GRID AMOUNT */
-.grid-amt {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px;
-}
-.ga-btn {
-    background: rgba(255,255,255,0.03); border: 1px solid #333; border-radius: 8px;
-    padding: 10px 0; color: #9ca3af; font-size: 11.5px; font-weight: 600;
-    cursor: pointer; outline: none; transition: 0.2s; font-family: 'Poppins', sans-serif;
-}
-.ga-btn.active { background: rgba(245, 208, 97, 0.15); border-color: #F5D061; color: #F5D061; }
-
-/* Button */
-.btn-submit {
-    display: block; width: 100%; background: linear-gradient(135deg, #C59327 0%, #F5D061 50%, #9C7012 100%); border-radius: 10px;
-    padding: 14px; color: #111; font-size: 14px; font-weight: 800; font-family: 'Poppins', sans-serif;
-    border: none; outline: none; cursor: pointer; transition: 0.2s;
-    display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px;
-}
-.btn-submit:active { transform: scale(0.98); }
-.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-.btn-submit svg { width: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
-
-/* Info Box */
-.info-box {
-    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px; padding: 16px; margin-top: 20px;
-}
-.ib-head { display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 700; color: #F5D061; margin-bottom: 12px;}
-.ib-head svg { width: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
-.ib-list { display: flex; flex-direction: column; gap: 10px;}
-.ib-item { display: flex; align-items: flex-start; gap: 10px; font-size: 10px; color: #fff; line-height: 1.5; font-weight: 500;}
-.ib-num { width: 16px; height: 16px; background: rgba(245, 208, 97, 0.15); color: #F5D061; border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700;}
-
-/* ALERTS */
-.err-alert {
-    margin-bottom: 15px; padding: 12px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3);
-    color: #fca5a5; border-radius: 8px; font-size: 11.5px; font-weight: 600; display: none; text-align:center;
-}
-.err-alert.show { display: block; }
-
+.alert { margin-bottom: 16px; padding: 14px 16px; border-radius: 12px; font-size: 11px; font-weight: 600; display: none; text-align: center;}
+.alert.err { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; }
+#errBox.show { display:block; }
 </style>
 </head>
 <body>
 <div class="app">
 
-    <!-- HEADER -->
-    <div class="th-container">
-        <a href="<?= base_url('pages/profile') ?>" class="th-back">
-            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-        </a>
-        <div class="th-title">Deposit Saldo</div>
-        <a href="<?= base_url('pages/history?type=deposit') ?>" class="th-history">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Riwayat
-        </a>
+    <!-- HEADER CURVED -->
+    <div class="h-bg">
+        <div class="h-nav">
+            <a href="javascript:history.back()" class="back-btn"><i class="fa-solid fa-chevron-left"></i></a>
+            <div class="h-title">
+                <h3>Top Up Saldo</h3>
+                <p>Isi saldo untuk mulai investasi</p>
+            </div>
+        </div>
+        <div class="ti-card">
+            <label>Jumlah Top Up</label>
+            <div class="ti-wrap">
+                <span>Rp</span>
+                <input type="text" class="ti-input" id="amountInput" inputmode="numeric" placeholder="0" oninput="onInput(this)" onfocus="this.parentElement.classList.add('focus')" onblur="this.parentElement.classList.remove('focus')">
+            </div>
+            <small>Minimal Rp <?= number_format($MIN_DEPOSIT,0,',','.') ?></small>
+        </div>
     </div>
 
-    <div class="content-area">
+    <!-- MAIN CONTENT -->
+    <div class="c-body">
 
-        <div class="err-alert" id="errBox"></div>
+        <div class="alert err" id="errBox"></div>
 
-        <div class="form-card">
-            <div class="fc-head">
-                <div class="fc-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2-2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></div>
-                <div class="fc-title">Pengisian Saldo</div>
+        <div class="w-card">
+            <h4 class="wc-title">Pilih Nominal</h4>
+            <div class="quick-pills">
+                <button class="qp-btn" onclick="setAmt(50000, this)">50rb</button>
+                <button class="qp-btn" onclick="setAmt(100000, this)">100rb</button>
+                <button class="qp-btn" onclick="setAmt(500000, this)">500rb</button>
+                <button class="qp-btn" onclick="setAmt(1000000, this)">1jt</button>
+                <button class="qp-btn" onclick="setAmt(5000000, this)">5jt</button>
             </div>
+        </div>
 
-            <!-- METHOD SELECTOR -->
-            <div class="form-group">
-                <div class="form-lbl"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg> Metode Deposit</div>
-                <div class="custom-select-wrapper">
-                    <div class="method-grp" id="customMethodBtn">
-                        <div class="mg-text" id="methodSelectedText">-- Pilih Metode --</div>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
-                    
-                    <div class="method-dropdown" id="methodDropdown">
-                        <div class="md-item active" data-val="" data-min="">-- Pilih Metode --</div>
-                        <div class="md-item" data-val="QRIS" data-min="<?= $MIN_DEPOSIT ?>">QRIS Instant</div>
-                    </div>
-
-                    <select id="methodSelect" style="display:none;" onchange="validate()">
-                        <option value="">Pilih metode</option>
-                        <option value="QRIS">QRIS</option>
-                    </select>
+        <div class="w-card" style="padding-bottom:10px;">
+            <h4 class="wc-title">Metode Pembayaran</h4>
+            
+            <div style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.5); letter-spacing:0.5px; margin-bottom:8px;">INSTANT PAYMENT</div>
+            <!-- METHOD QRIS ONLY -->
+            <div class="pm-card">
+                <div class="pm-left">
+                    <div class="pm-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo_QRIS.svg" alt="QRIS"></div>
+                    <div class="pm-name">QRIS</div>
                 </div>
+                <div class="pm-radio"><i class="fa-solid fa-circle"></i></div>
             </div>
+        </div>
 
-            <!-- AMOUNT SELECTION -->
-            <div class="form-group">
-                <div class="form-lbl"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M16 11v1a4 4 0 0 1-8 0v-1"></path><line x1="12" y1="2" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="22"></line></svg> Pilih Jumlah Cepat</div>
-                <div class="grid-amt">
-                    <?php 
-                    $possible_qa = [600, 1300, 4000, 7000, 10000, 15000, 20000, 25000, 50000, 100000, 200000, 300000, 500000, 1000000, 2000000, 5000000, 10000000];
-                    $quick_amounts = [];
-                    foreach ($possible_qa as $qa) {
-                        if ($qa >= $MIN_DEPOSIT && count($quick_amounts) < 8) {
-                            $quick_amounts[] = $qa;
-                        }
-                    }
-                    if (empty($quick_amounts)) {
-                        $mults = [1, 2, 3, 5, 10, 20, 50, 100];
-                        foreach ($mults as $m) $quick_amounts[] = $MIN_DEPOSIT * $m;
-                    }
-                    foreach (array_slice($quick_amounts, 0, 8) as $qa): 
-                    ?>
-                    <button class="ga-btn" onclick="setAmt(<?= $qa ?>, this)"><?= number_format($qa/1000,0,'','.') ?>k</button>
-                    <?php endforeach; ?>
-                </div>
+        <div class="warn-box">
+            <div class="wb-icon"><i class="fa-solid fa-info"></i></div>
+            <div class="wb-text">
+                <div class="wb-title">Informasi</div>
+                <ul class="wb-list">
+                    <li>Top up diproses dalam 1-5 menit</li>
+                    <li>Simpan bukti scan QRIS sebagai referensi</li>
+                    <li>Jika saldo belum masuk, hubungi Customer Service</li>
+                </ul>
             </div>
+        </div>
 
-            <!-- INPUT FIELD -->
-            <div class="form-group">
-                <div class="form-lbl">IDR Jumlah Deposit</div>
-                <div class="input-wrap">
-                    <div class="curr">Rp</div>
-                    <input type="text" class="form-input" id="amountInput" inputmode="numeric" placeholder="Masukkan jumlah deposit anda" oninput="onInput(this)" onfocus="this.parentElement.classList.add('focus')" onblur="this.parentElement.classList.remove('focus')">
-                </div>
-            </div>
-
-            <button class="btn-submit" id="btnProses" onclick="doDeposit()" disabled>
-                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2-2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                Deposit Sekarang
+    </div>
+    
+    <!-- FIXED BUTTON SUMMARY -->
+    <div class="fixed-btn-wrap">
+        <div class="app-cont">
+            <button class="btn-primary" id="btnProses" onclick="doDeposit()" disabled>
+                <i class="fa-solid fa-wallet"></i> Lanjutkan Pembayaran
             </button>
         </div>
-
-        <!-- INFO -->
-        <div class="info-box">
-            <div class="ib-head"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg> Petunjuk Deposit</div>
-            <div class="ib-list">
-                <div class="ib-item"><div class="ib-num">1</div> Jam kerja layanan deposit adalah 09:00-20:30.</div>
-                <div class="ib-item"><div class="ib-num">2</div> Lakukan pembayaran hanya melalui rekening bank yang didapatkan setelah Anda menekan tombol di atas.</div>
-                <div class="ib-item"><div class="ib-num">3</div> Jumlah minimum adalah <strong>Rp<?= number_format($MIN_DEPOSIT,0,'','.') ?></strong>.</div>
-                <div class="ib-item"><div class="ib-num">4</div> Dana akan diproses otomatis oleh sistem selama sesuai dengan ketentuan dan instruksi pada laman bayar berikutnya.</div>
-            </div>
-        </div>
-
     </div>
 </div>
 
@@ -460,100 +372,77 @@ body {
   <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
   <input type="hidden" name="ajax" value="1">
   <input type="hidden" name="amount" id="fAmount">
-  <input type="hidden" name="method" id="fMethod">
+  <input type="hidden" name="method" value="QRIS">
 </form>
 
 <script>
 let val = 0;
 let min_val = <?= (int)$MIN_DEPOSIT ?>;
+let max_val = <?= (int)$MAX_DEPOSIT ?>;
 
 function setAmt(v, el) {
-    document.querySelectorAll('.ga-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.qp-btn').forEach(b => b.classList.remove('active'));
     if(el) el.classList.add('active');
     val = v;
-    document.getElementById('amountInput').value = v;
+    document.getElementById('amountInput').value = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     validate();
 }
 
 function onInput(el) {
     let clean = el.value.replace(/[^0-9]/g, '');
     val = parseInt(clean) || 0;
-    el.value = clean;
-    document.querySelectorAll('.ga-btn').forEach(b => b.classList.remove('active'));
+    el.value = clean ? clean.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : ""; 
+    document.querySelectorAll('.qp-btn').forEach(b => b.classList.remove('active'));
     validate();
 }
 
 function validate() {
     let err = document.getElementById('errBox');
-    err.classList.remove('show');
-    let sel = document.getElementById('methodSelect');
-    let opt = sel.options[sel.selectedIndex];
-    let cm = parseInt(opt.getAttribute('data-min') || min_val) || min_val;
-    
     let btn = document.getElementById('btnProses');
-    if(val > 0 && val < cm) {
-        err.textContent = "Minimal deposit Rp " + cm;
+    
+    err.classList.remove('show');
+    
+    if(val > 0 && val < min_val) {
+        err.textContent = "Minimal deposit Rp " + min_val.toLocaleString('id-ID');
         err.classList.add('show');
+        btn.disabled = true;
+    } else if(val > max_val) {
+        err.textContent = "Maksimal deposit Rp " + max_val.toLocaleString('id-ID');
+        err.classList.add('show');
+        btn.disabled = true;
+    } else {
+        btn.disabled = !(val >= min_val);
     }
-    btn.disabled = !(val >= cm && sel.value !== '');
 }
 
 async function doDeposit() {
     let btn = document.getElementById('btnProses');
-    btn.disabled = true; btn.textContent = "Memproses...";
+    btn.disabled = true; 
+    btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Memproses...';
     
     document.getElementById('fAmount').value = val;
-    document.getElementById('fMethod').value = document.getElementById('methodSelect').value;
     
     let fd = new FormData(document.getElementById('depF'));
     try {
         let r = await fetch('', { method: 'POST', body: fd, credentials: 'same-origin' });
         let d = await r.json();
-        if(d.ok && d.redirect) window.location.href = d.redirect;
-        else {
-            document.getElementById('errBox').textContent = d.error || 'Terjadi kesalahan.';
+        if(d.ok && d.redirect) {
+            window.location.href = d.redirect;
+        } else {
+            document.getElementById('errBox').textContent = d.error || 'Terjadi kesalahan gateway.';
             document.getElementById('errBox').classList.add('show');
-            btn.disabled = false; btn.textContent = "Deposit Sekarang";
+            btn.disabled = false; 
+            btn.innerHTML = '<i class="fa-solid fa-wallet"></i> Lanjutkan Pembayaran';
+            window.scrollTo({top:0, behavior:'smooth'});
         }
     } catch(e) {
-        document.getElementById('errBox').textContent = 'Koneksi error.';
+        document.getElementById('errBox').textContent = 'Koneksi error ke server.';
         document.getElementById('errBox').classList.add('show');
-        btn.disabled = false; btn.textContent = "Deposit Sekarang";
+        btn.disabled = false; 
+        btn.innerHTML = '<i class="fa-solid fa-wallet"></i> Lanjutkan Pembayaran';
+        window.scrollTo({top:0, behavior:'smooth'});
     }
 }
-document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('customMethodBtn');
-    const dp = document.getElementById('methodDropdown');
-    const sel = document.getElementById('methodSelect');
-    const txt = document.getElementById('methodSelectedText');
-    const items = document.querySelectorAll('.md-item');
-
-    btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        dp.classList.toggle('open');
-        btn.classList.toggle('active');
-    });
-
-    document.addEventListener('click', (e) => {
-        if (!dp.contains(e.target) && !btn.contains(e.target)) {
-            dp.classList.remove('open');
-            btn.classList.remove('active');
-        }
-    });
-
-    items.forEach(it => {
-        it.addEventListener('click', () => {
-            items.forEach(i => i.classList.remove('active'));
-            it.classList.add('active');
-            let v = it.getAttribute('data-val');
-            sel.value = v;
-            txt.textContent = it.textContent.trim();
-            sel.dispatchEvent(new Event('change'));
-            dp.classList.remove('open');
-            btn.classList.remove('active');
-        });
-    });
-});
 </script>
 </body>
 </html>

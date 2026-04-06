@@ -286,155 +286,110 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'withd
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
 <title>Penarikan &bullet; <?= htmlspecialchars($site_name) ?></title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { 
-    font-family: 'Poppins', sans-serif; 
-    background-color: #111111; 
-    color: #fff; -webkit-font-smoothing: antialiased; 
-}
-.app { 
-    max-width: 480px; margin: 0 auto; min-height: 100vh; position: relative;
-    background-color: #111111;
-    background-image: 
-      linear-gradient(45deg, rgba(255,255,255,0.02) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.02) 75%, rgba(255,255,255,0.02)), 
-      linear-gradient(45deg, rgba(255,255,255,0.02) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.02) 75%, rgba(255,255,255,0.02));
-    background-size: 40px 40px;
-    background-position: 0 0, 20px 20px;
-    padding-bottom: 40px;
-}
+body { font-family: 'Poppins', sans-serif; background: #012b26; color: #fff; -webkit-font-smoothing: antialiased; }
+.app { max-width: 480px; margin: 0 auto; min-height: 100vh; position: relative; background: #012b26; padding-bottom: 40px; }
 
 /* HEADER */
-.th-container { padding: 20px; display: flex; align-items: center; justify-content: flex-start; gap: 15px;}
-.th-back, .th-history { 
-    display: flex; align-items: center; justify-content: center; 
-    width: 36px; height: 36px; background: rgba(255,255,255,0.08); 
-    border-radius: 10px; color: #fff; text-decoration: none; 
-}
-.th-history { width: auto; padding: 0 12px; font-size: 11px; font-weight: 600; gap: 6px; margin-left: auto; border: 1px solid rgba(255,255,255,0.15);}
-.th-back svg { width: 18px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; }
-.th-history svg { width: 14px; stroke: currentColor; fill: none; stroke-width: 2.5; }
-.th-title { font-size: 16px; font-weight: 700; color: #fff;}
+.h-bg { background: linear-gradient(135deg, #023e35 0%, #01312b 100%); padding: 25px 20px 100px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; position: relative; box-shadow: 0 8px 25px rgba(0,0,0,0.3); z-index: 1; }
+.h-nav { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+.back-btn { width: 36px; height: 36px; border-radius: 12px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
+.back-btn:active { background: rgba(255,255,255,0.1); }
+.h-title { display: flex; flex-direction: column; }
+.h-title h3 { font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 2px; }
+.h-title p { font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.7); }
 
-.content-area { padding: 0 20px; }
+.h-card { background: transparent; border: 1px solid rgba(250,204,21,0.25); border-radius: 16px; padding: 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.hc-left { display: flex; align-items: center; gap: 14px; }
+.hc-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(250,204,21,0.1); display: flex; align-items: center; justify-content: center; color: #facc15; font-size: 18px; }
+.hc-texts { display: flex; flex-direction: column; }
+.hc-lbl { font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px;}
+.hc-val { font-size: 18px; font-weight: 800; color: #fff; line-height: 1; }
 
-/* TOP BALANCE BOX */
-.bal-box {
-    background: linear-gradient(135deg, #18181B 0%, #000000 100%); border: 1px solid #333;
-    border-radius: 16px; padding: 20px 16px; margin-bottom: 20px;
-    text-align: center;
-}
-.bb-lbl { font-size: 11.5px; color: #9ca3af; font-weight: 500; margin-bottom: 8px;}
-.bb-val { font-size: 26px; font-weight: 800; color: #fff; display: flex; align-items: flex-start; justify-content: center; gap: 6px;}
-.bb-val span { font-size: 14px; font-weight: 700; color: #F5D061; margin-top: 2px;}
+.c-body { padding: 0 20px; margin-top: -65px; position: relative; z-index: 2; }
+.w-card { background: #023e35; border-radius: 20px; padding: 20px; margin-bottom: 16px; border: 1px solid #035246; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.wc-title { font-size: 12px; font-weight: 800; color: #fff; margin-bottom: 14px; }
 
-.bb-btns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px;}
-.btn-quick {
-    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 8px; padding: 10px 0; color: #fff; font-size: 12px; font-weight: 600;
-    cursor: pointer; outline: none; font-family: 'Poppins', sans-serif;
-}
+/* INPUT */
+.input-wrap { display: flex; align-items: center; background: #012b26; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; transition: 0.2s;}
+.input-wrap.focus { border-color: #facc15; }
+.iw-curr { font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.5); margin-right: 12px; }
+.iw-input { flex: 1; min-width: 0; background: none; border: none; font-size: 18px; font-weight: 800; color: #fff; outline: none; font-family: 'Poppins', sans-serif;}
+.iw-input::placeholder { color: rgba(255,255,255,0.2); }
+.wc-min { font-size: 10px; color: rgba(255,255,255,0.5); margin-bottom: 16px; font-weight: 500;}
 
-/* MAIN CARD */
-.form-card {
-    background: linear-gradient(135deg, #18181B 0%, #000000 100%); border: 1px solid #333;
-    border-radius: 16px; padding: 16px; margin-bottom: 20px;
-}
+/* PILLS */
+.quick-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.qp-btn { flex: 1; min-width: 45px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 10px; padding: 10px 0; font-size: 11px; font-weight: 600; cursor: pointer; transition: 0.2s; font-family: 'Poppins', sans-serif; text-align: center; }
+.qp-btn:active { background: rgba(255,255,255,0.1); }
 
-.fc-head { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
-.fc-icon { width: 36px; height: 36px; background: linear-gradient(135deg, #C59327 0%, #F5D061 50%, #9C7012 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #111;}
-.fc-icon svg { width: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
-.fc-title { font-size: 14.5px; font-weight: 700; color: #fff; }
+/* REK BOX */
+.rek-box { background: rgba(250, 204, 21, 0.05); border: 1px solid rgba(250, 204, 21, 0.2); border-radius: 14px; padding: 14px; display: flex; align-items: center; gap: 14px; margin-bottom: 12px; cursor: pointer;}
+.rb-icon { width: 44px; height: 44px; border-radius: 12px; background: #012b26; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #facc15; }
+.rb-info { flex: 1; display:flex; flex-direction:column; }
+.rb-info h5 { font-size: 13px; font-weight: 800; color: #fff; margin-bottom: 2px;}
+.rb-info p { font-size: 11px; color: rgba(255,255,255,0.7); font-weight: 500; margin-bottom: 2px;}
+.rb-info small { font-size: 10px; color: rgba(255,255,255,0.4); font-weight: 500;}
+.rb-arrow { width: 32px; height: 32px; border-radius: 10px; background: rgba(250, 204, 21, 0.1); color: #facc15; display: flex; align-items: center; justify-content: center; font-size: 12px; }
 
-.form-group { margin-bottom: 16px; }
-.form-lbl {
-    display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; 
-    color: #fff; margin-bottom: 8px;
-}
-.form-lbl svg 
-{ width: 13px; stroke: #F5D061; fill: none; stroke-width: 2.5; }
+.wc-link { font-size: 11px; font-weight: 700; color: #facc15; text-decoration: none; }
 
-/* Readonly method block */
-.method-box {
-    background: rgba(255,255,255,0.02); border: 1px solid #F5D061;
-    border-radius: 10px; padding: 12px 14px; display: flex; align-items: center; gap: 12px;
-}
-.mb-icon { width: 32px; height: 32px; background: #F5D061; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #111; flex-shrink: 0;}
-.mb-icon svg { width: 16px; stroke: currentColor; fill: none; stroke-width: 2.5; }
-.mb-text { flex: 1; }
-.mb-title { font-size: 13px; font-weight: 700; color: #fff; }
-.mb-desc { font-size: 11px; color: #9ca3af; }
+/* SUMMARY & PASSWORD */
+.s-item { display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.7); padding: 8px 0; border-bottom: 1px dashed rgba(255,255,255,0.05); }
+.s-item:last-child { border-bottom: none; }
+.s-item span { color: #fff; font-weight: 800; }
+.s-item .red { color: #f87171; }
+.s-item .green { color: #facc15; }
 
-.input-wrap { position: relative; display: flex; align-items: center; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 0 14px;}
-.input-wrap .curr { font-size: 13px; font-weight: 700; color: #F5D061; margin-right: 8px; }
-.form-input {
-    flex: 1; background: transparent; border: none; padding: 14px 0; font-size: 14px; font-weight: 600; color: #fff;
-    outline: none; font-family: 'Poppins', sans-serif;
-}
-.form-input::placeholder { color: #6b7280; font-weight: 500;}
-.input-wrap.focus { border-color: #F5D061; }
-.hint-text { font-size: 9px; color: #6b7280; margin-top: 6px; display:flex; align-items:center; gap:4px;}
-.hint-text svg { width: 10px; stroke: currentColor; fill: none; stroke-width: 2; }
+/* WARNING BOX */
+.warn-box { background: rgba(250, 204, 21, 0.05); border: 1px solid rgba(250, 204, 21, 0.2); border-radius: 16px; padding: 16px; display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px;}
+.wb-icon { width: 24px; height: 24px; border-radius: 50%; background: #facc15; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: #012b26; flex-shrink: 0; }
+.wb-text { flex: 1; }
+.wb-title { font-size: 12px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+.wb-list { padding-left: 14px; margin: 0;}
+.wb-list li { font-size: 10px; color: rgba(255,255,255,0.6); margin-bottom: 6px; font-weight: 500; line-height: 1.4;}
+.wb-list li:last-child { margin-bottom: 0; }
 
-/* Summary List */
-.summary-list {
-    margin: 20px 0; display: flex; flex-direction: column; gap: 10px;
-}
-.s-item { display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; font-weight: 600; color: #9ca3af; }
-.s-item span { color: #fff; font-weight: 700; }
-.s-item .red { color: #ef4444; }
-.s-item .green { color: #F5D061; }
-.s-item svg { width: 12px; stroke: #9ca3af; fill: none; stroke-width: 2; margin-right: 6px; vertical-align: middle;}
+/* ACTIONS */
+.f-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;}
+.btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 14px; font-size: 13px; font-weight: 800; border-radius: 14px; cursor: pointer; text-align: center; font-family: 'Poppins', sans-serif;}
+.btn-primary { background: #facc15; color: #012b26; border: none; padding: 14px; font-size: 13px; font-weight: 800; border-radius: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(250, 204, 21, 0.2); font-family: 'Poppins', sans-serif; transition: 0.2s;}
+.btn-primary:active { transform: scale(0.96); }
 
-/* Button */
-.btn-submit {
-    display: block; width: 100%; background: linear-gradient(135deg, #C59327 0%, #F5D061 50%, #9C7012 100%); border-radius: 10px;
-    padding: 14px; color: #111; font-size: 14px; font-weight: 800; font-family: 'Poppins', sans-serif;
-    border: none; outline: none; cursor: pointer; transition: 0.2s;
-    display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px;
-}
-.btn-submit:active { transform: scale(0.98); }
-.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-.btn-submit svg { width: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
-
-/* Info Box */
-.info-box {
-    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px; padding: 16px; 
-}
-.ib-head { display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 700; color: #F5D061; margin-bottom: 12px;}
-.ib-head svg { width: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
-.ib-list { display: flex; flex-direction: column; gap: 10px;}
-.ib-item { display: flex; align-items: flex-start; gap: 10px; font-size: 10px; color: #fff; line-height: 1.5; font-weight: 500;}
-.ib-num { width: 16px; height: 16px; background: rgba(245, 208, 97, 0.15); color: #F5D061; border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700;}
-
-
-/* ALERTS */
-.alert { margin-bottom: 20px; padding: 14px 16px; border-radius: 12px; font-size: 11.5px; font-weight: 600; display: none; text-align: center;}
-.alert.err { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; }
-.alert.suc { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); color: #6ee7b7; }
-.show { display: block; }
+.alert { margin-bottom: 16px; padding: 14px 16px; border-radius: 12px; font-size: 11px; font-weight: 600; display: none; text-align: center;}
+.alert.err { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; display:block; }
+.alert.suc { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); color: #6ee7b7; display:block; }
+#errBox { display:none; }
+#errBox.show { display:block; }
 </style>
 </head>
 <body>
 <div class="app">
 
-    <!-- HEADER -->
-    <div class="th-container">
-        <a href="javascript:history.back()" class="th-back">
-            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-        </a>
-        <div class="th-title">Penarikan Dana</div>
-        <a href="<?= base_url('pages/history?type=withdraw') ?>" class="th-history">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Riwayat
-        </a>
+    <!-- HEADER CURVED -->
+    <div class="h-bg">
+        <div class="h-nav">
+            <a href="javascript:history.back()" class="back-btn"><i class="fa-solid fa-chevron-left"></i></a>
+            <div class="h-title">
+                <h3>Penarikan dana</h3>
+                <p>Tarik saldo penarikan ke rekening terdaftar</p>
+            </div>
+        </div>
+        <div class="h-card">
+            <div class="hc-left">
+                <div class="hc-icon"><i class="fa-solid fa-wallet"></i></div>
+                <div class="hc-texts">
+                    <span class="hc-lbl">SALDO BISA DITARIK</span>
+                    <h4 class="hc-val">Rp <?= number_format($saldo, 0, ',', '.') ?></h4>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="content-area">
-
-        <!-- ALERTS -->
-        <!-- ALERTS (Managed by logic/JS) -->
+    <!-- MAIN CONTENT -->
+    <div class="c-body">
 
         <?php if (isset($withdraw_result) && $withdraw_result['ok']): ?>
         <div class="alert suc show"><?= htmlspecialchars($withdraw_result['msg']) ?></div>
@@ -444,98 +399,89 @@ body {
         <?php endif; ?>
         <div class="alert err" id="errBox"></div>
 
-        <!-- BALANCE BOX -->
-        <div class="bal-box">
-            <div class="bb-lbl">Rp Saldo Tersedia untuk Penarikan</div>
-            <div class="bb-val"><span>Rp</span> <?= number_format($saldo, 0, ',', '.') ?></div>
-            <div class="bb-btns">
-                <button class="btn-quick" onclick="setAmt(100000)">Rp100rb</button>
-                <button class="btn-quick" onclick="setAmt(500000)">Rp500rb</button>
-                <button class="btn-quick" onclick="setAmt('max')">Semua</button>
+        <div class="w-card">
+            <h4 class="wc-title">Jumlah penarikan</h4>
+            <div class="input-wrap">
+                <span class="iw-curr">Rp</span>
+                <input type="text" class="iw-input" id="amountInput" inputmode="numeric" placeholder="0" oninput="onInput(this)" onfocus="this.parentElement.classList.add('focus')" onblur="this.parentElement.classList.remove('focus')">
+            </div>
+            <div class="wc-min">Minimum Rp <?= number_format($MIN_WITHDRAW,0,',','.') ?></div>
+            
+            <div class="quick-pills">
+                <button class="qp-btn" onclick="setAmt(30000)">30rb</button>
+                <button class="qp-btn" onclick="setAmt(50000)">50rb</button>
+                <button class="qp-btn" onclick="setAmt(100000)">100rb</button>
+                <button class="qp-btn" onclick="setAmt(500000)">500rb</button>
+                <button class="qp-btn" onclick="setAmt(1000000)">1jt</button>
             </div>
         </div>
 
-        <!-- MAIN FORM -->
-        <div class="form-card">
-            <div class="fc-head">
-                <div class="fc-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></div>
-                <div class="fc-title">Form Penarikan</div>
-            </div>
-
-            <!-- Metode -->
-            <div class="form-group">
-                <div class="form-lbl"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg> Metode Penarikan</div>
-                <?php if ($has_rekening): ?>
-                <div class="method-box">
-                    <div class="mb-icon"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg></div>
-                    <div class="mb-text">
-                        <div class="mb-title"><?= htmlspecialchars($ew_name) ?></div>
-                        <div class="mb-desc"><?= htmlspecialchars($rek_no) ?></div>
-                    </div>
+        <div class="w-card">
+            <h4 class="wc-title">Rekening tujuan</h4>
+            <?php if($has_rekening): ?>
+            <div class="rek-box" onclick="window.location.href='<?= base_url('pages/bank') ?>'">
+                <div class="rb-icon"><i class="fa-solid fa-building-columns"></i></div>
+                <div class="rb-info">
+                    <h5><?= htmlspecialchars($ew_name) ?></h5>
+                    <p><?= htmlspecialchars($rek_no) ?></p>
+                    <small><?= htmlspecialchars($rek_pemilik) ?></small>
                 </div>
-                <?php else: ?>
-                <div class="method-box" style="border-color:#ef4444;" onclick="window.location.href='<?= base_url('pages/bank') ?>'">
-                    <div class="mb-icon" style="background:#ef4444; color:#fff;"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div>
-                    <div class="mb-text">
-                        <div class="mb-title" style="color:#fca5a5;">Belum diatur</div>
-                        <div class="mb-desc">Klik disini untuk mengatur</div>
-                    </div>
-                </div>
-                <?php endif; ?>
+                <div class="rb-arrow"><i class="fa-solid fa-arrow-right"></i></div>
             </div>
-
-            <!-- Amount Input -->
-            <div class="form-group">
-                <div class="form-lbl">IDR Jumlah Penarikan</div>
-                <div class="input-wrap">
-                    <div class="curr">Rp</div>
-                    <input type="text" class="form-input" id="amountInput" inputmode="numeric" placeholder="Masukkan jumlah" oninput="onInput(this)" onfocus="this.parentElement.classList.add('focus')" onblur="this.parentElement.classList.remove('focus')">
+            <a href="<?= base_url('pages/bank') ?>" class="wc-link">Kelola rekening</a>
+            <?php else: ?>
+            <div class="rek-box" style="border-color:#ef4444;" onclick="window.location.href='<?= base_url('pages/bank') ?>'">
+                <div class="rb-icon" style="background:#ef4444; color:#fff;"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <div class="rb-info">
+                    <h5 style="color:#fca5a5;">Belum Diatur</h5>
+                    <p>Klik disini mengatur bank tujuan</p>
                 </div>
-                <div class="hint-text"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg> Min: Rp<?= number_format($MIN_WITHDRAW,0,'','.') ?> | Maks: Rp<?= number_format($MAX_WITHDRAW,0,'','.') ?></div>
+                <div class="rb-arrow" style="background:transparent; color:#ef4444;"><i class="fa-solid fa-arrow-right"></i></div>
             </div>
+            <?php endif; ?>
+        </div>
 
-            <!-- Password Security -->
-            <div class="form-group">
-                <div class="form-lbl"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Password Login</div>
-                <div class="input-wrap" style="padding-right:48px;">
-                    <input type="password" id="inputPwd" class="form-input" placeholder="Ketik kata sandi (Wajib)" onfocus="this.parentElement.classList.add('focus')" onblur="this.parentElement.classList.remove('focus')">
-                    <div style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); cursor:pointer; color:#9ca3af; display:flex; align-items:center;" onclick="togglePwd()">
-                        <svg id="eyeIcon" viewBox="0 0 24 24" width="18" stroke="currentColor" fill="none" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8v0z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                    </div>
+        <div class="w-card" style="padding-bottom:10px;">
+            <h4 class="wc-title">Konfirmasi keamanan</h4>
+            
+            <div class="input-wrap" style="position:relative; margin-bottom:14px;">
+                <input type="password" id="inputPwd" class="iw-input" placeholder="Kata sandi login Anda" style="font-size:13px;" onfocus="this.parentElement.classList.add('focus')" onblur="this.parentElement.classList.remove('focus')">
+                <div style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); cursor:pointer; color:rgba(255,255,255,0.4);" onclick="togglePwd()">
+                    <i class="fa-regular fa-eye" id="eyeIcon"></i>
                 </div>
             </div>
-
-
-
-            <div class="summary-list">
-                <div class="s-item">
-                    <div><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>Jumlah Penarikan</div>
-                    <span id="dispAmount">Rp0</span>
-                </div>
-                <div class="s-item">
-                    <div><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>Biaya Penanganan (<?= $fee_persen ?>%)</div>
-                    <span class="red" id="dispBiaya">-Rp0</span>
-                </div>
-                <div class="s-item">
-                    <div><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Total Diterima</div>
-                    <span class="green" id="didapat">Rp0</span>
-                </div>
+            
+            <div class="s-item">
+                <div>Jumlah Penarikan</div>
+                <span id="dispAmount">Rp0</span>
             </div>
+            <div class="s-item">
+                <div>Biaya Penanganan (<?= $fee_persen ?>%)</div>
+                <span class="red" id="dispBiaya">-Rp0</span>
+            </div>
+            <div class="s-item" style="border-bottom:none;">
+                <div>Total Diterima</div>
+                <span class="green" id="didapat">Rp0</span>
+            </div>
+        </div>
 
-            <button class="btn-submit" id="btnProses" onclick="doWithdraw()" disabled>
-                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2-2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                Konfirmasi Penarikan
+        <div class="warn-box">
+            <div class="wb-icon"><i class="fa-solid fa-info"></i></div>
+            <div class="wb-text">
+                <div class="wb-title">Informasi</div>
+                <ul class="wb-list">
+                    <li>Biaya admin <?= $fee_persen ?>% + Rp <?= number_format($FIXED_FEE,0,',','.') ?> per transaksi</li>
+                    <li>Proses pencairan biasanya 1&ndash;5 menit</li>
+                    <li>Hanya ke rekening yang terdaftar di profil</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="f-actions">
+            <button class="btn-outline" onclick="window.location.href='<?= base_url('pages/profile') ?>'">Batal</button>
+            <button class="btn-primary" id="btnProses" onclick="doWithdraw()">
+                <i class="fa-solid fa-money-bill-transfer"></i> Tarik dana
             </button>
-        </div>
-
-        <!-- INFO -->
-        <div class="info-box">
-            <div class="ib-head"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg> Informasi Penarikan</div>
-            <div class="ib-list">
-                <div class="ib-item"><div class="ib-num">1</div> <div>Minimum penarikan adalah <strong>Rp<?= number_format($MIN_WITHDRAW,0,'','.') ?></strong>. Pastikan saldo Anda mencukupi.</div></div>
-                <div class="ib-item"><div class="ib-num">2</div> <div>Penarikan diproses secara <strong>manual oleh admin</strong>. Estimasi proses maksimal <strong>1x24 jam</strong>.</div></div>
-                <div class="ib-item"><div class="ib-num">3</div> <div>Saldo akan dipotong langsung saat pengajuan. Jika ditolak, saldo akan dikembalikan oleh admin.</div></div>
-            </div>
         </div>
 
     </div>
@@ -553,6 +499,7 @@ body {
 <script>
 let val = 0;
 let fee_pct = <?= (float)$fee_persen ?>;
+let fee_fixed = <?= (int)$FIXED_FEE ?>;
 let has_rek = <?= $has_rekening ? 'true' : 'false' ?>;
 let block = <?= json_encode($block_reason) ?>;
 let checkTimeout = null;
@@ -572,7 +519,8 @@ function onInput(el) {
 }
 
 function calc() {
-    let c_fee = Math.floor(val * (fee_pct/100));
+    let pct_fee = Math.floor(val * (fee_pct/100));
+    let c_fee = fee_fixed + pct_fee;
     let rec = val - c_fee;
     if(rec < 0) rec = 0;
     
@@ -589,6 +537,7 @@ function validateAjax() {
 
     err.classList.remove('show');
     btn.disabled = true;
+    btn.style.opacity = '0.5';
 
     if(val <= 0) return;
 
@@ -604,6 +553,7 @@ function validateAjax() {
             if(d.ok) {
                 err.classList.remove('show');
                 btn.disabled = false;
+                btn.style.opacity = '1';
             } else {
                 if(!d.silent) {
                     err.textContent = d.error || 'Terjadi kesalahan.';
@@ -612,7 +562,8 @@ function validateAjax() {
                 btn.disabled = true;
             }
         } catch(e) {
-            btn.disabled = false; // Allow submission if network check fails
+            btn.disabled = false;
+            btn.style.opacity = '1';
         }
     }, 400); // debounce 400ms
 }
@@ -623,7 +574,7 @@ async function doWithdraw() {
     err.classList.remove('show');
 
     if(!has_rek) {
-        err.textContent = "Harap tambahkan Rekening/E-wallet terlebih dahulu di Menu Profil.";
+        err.textContent = "Harap tambahkan Rekening/E-wallet terlebih dahulu di Kelola Rekening.";
         err.classList.add('show');
         return;
     }
@@ -640,7 +591,9 @@ async function doWithdraw() {
         return;
     }
 
-    btn.disabled = true; btn.textContent = "Memproses...";
+    btn.disabled = true; btn.style.opacity = '0.7'; 
+    btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Memproses...';
+    
     document.getElementById('fAmount').value = val;
     document.getElementById('fPassword').value = pwdObj.value;
     
@@ -654,12 +607,14 @@ async function doWithdraw() {
         } else {
             err.textContent = d.error || 'Terjadi kesalahan.';
             err.classList.add('show');
-            btn.disabled = false; btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2-2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Konfirmasi Penarikan';
+            btn.disabled = false; btn.style.opacity = '1';
+            btn.innerHTML = '<i class="fa-solid fa-money-bill-transfer"></i> Tarik dana';
         }
     } catch(e) {
         err.textContent = 'Koneksi error.';
         err.classList.add('show');
-        btn.disabled = false; btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2-2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Konfirmasi Penarikan';
+        btn.disabled = false; btn.style.opacity = '1';
+        btn.innerHTML = '<i class="fa-solid fa-money-bill-transfer"></i> Tarik dana';
     }
 }
 
@@ -668,10 +623,10 @@ function togglePwd() {
     let eye = document.getElementById('eyeIcon');
     if(inp.type === 'password') {
         inp.type = 'text';
-        eye.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>';
+        eye.className = 'fa-regular fa-eye-slash';
     } else {
         inp.type = 'password';
-        eye.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8v0z"></path><circle cx="12" cy="12" r="3"></circle>';
+        eye.className = 'fa-regular fa-eye';
     }
 }
 
@@ -682,5 +637,8 @@ if (block && block !== 'no_rekening') {
     err.classList.add('show');
 }
 </script>
+<?php require '../lib/footer_user.php'; ?>
+</body>
+</html>t>
 </body>
 </html>

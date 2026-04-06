@@ -92,82 +92,55 @@ $day_short = ['S','S','R','K','J','S','M'];
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-    background: #111; color: #fff; font-family: 'Poppins', sans-serif;
+    background: #012b26; color: #fff; font-family: 'Poppins', sans-serif;
     -webkit-font-smoothing: antialiased;
 }
-.app { max-width: 480px; margin: 0 auto; min-height: 100vh; background: #0A0A0A; position: relative; padding-bottom: 90px; overflow-x: hidden;}
+.app { max-width: 480px; margin: 0 auto; min-height: 100vh; background: #012b26; position: relative; padding-bottom: 90px; overflow-x: hidden;}
 
 /* ====== HEADER ====== */
-.top-header { padding: 25px 20px; display: flex; align-items: center; position: relative; z-index: 10; }
-.th-back { 
-    width: 38px; height: 38px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); 
-    border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none;
+.top-header { 
+    background: linear-gradient(135deg, #023e35 0%, #01312b 100%);
+    border-bottom-left-radius: 30px; border-bottom-right-radius: 30px;
+    padding: 25px 20px 40px; display: flex; align-items: center; position: relative; z-index: 10; 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
-.th-title { flex: 1; text-align: center; font-size: 16px; font-weight: 800; color: #fff; padding-right: 38px;}
+.th-back { 
+    width: 38px; height: 38px; background: rgba(250,204,21,0.1); border: 1px solid rgba(250,204,21,0.2); 
+    border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #facc15; text-decoration: none;
+    transition: 0.2s;
+}
+.th-back:active { transform: scale(0.95); }
+.th-title { flex: 1; text-align: center; font-size: 16px; font-weight: 800; color: #facc15; padding-right: 38px;}
 
 /* ====== STATS CHIP ====== */
-.stats-chip-wrap { display: flex; justify-content: center; margin-top: 10px; margin-bottom: 40px; position: relative; z-index: 10; }
+.stats-chip-wrap { display: flex; justify-content: center; margin-top: -20px; margin-bottom: 40px; position: relative; z-index: 11; }
 .stats-chip {
-    background: rgba(197, 147, 39, 0.1); border: 1px solid rgba(197, 147, 39, 0.3);
-    padding: 8px 20px; border-radius: 30px; display: inline-flex; align-items: center; gap: 15px;
+    background: #023e35; border: 1px solid #facc15; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    padding: 12px 24px; border-radius: 20px; display: inline-flex; align-items: center; gap: 20px;
 }
 .sc-item { display: flex; flex-direction: column; align-items: center; }
-.sc-val { font-size: 14px; font-weight: 800; color: #F5D061; line-height: 1; margin-bottom: 2px;}
-.sc-lbl { font-size: 8px; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px;}
-.sc-div { width: 1px; height: 20px; background: rgba(197, 147, 39, 0.3); }
+.sc-val { font-size: 15px; font-weight: 800; color: #facc15; line-height: 1; margin-bottom: 4px;}
+.sc-lbl { font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.5px;}
+.sc-div { width: 1px; height: 26px; background: rgba(250, 204, 21, 0.3); }
 
-/* ====== HERO BUTTON AREA ====== */
-.hero-tap-area { position: relative; display: flex; justify-content: center; align-items: center; height: 240px; margin-bottom: 50px; }
-.big-circle {
-    width: 180px; height: 180px; border-radius: 50%;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    position: relative; z-index: 2; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+/* ====== CLAIM BUTTON ====== */
+.btn-claim-normal {
+    background: #facc15; padding: 12px; margin-top: 24px; border-radius: 12px; width: 100%; font-weight: 800; color: #012b26; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 12px rgba(250, 204, 21, 0.2); transition: 0.2s; font-family: 'Poppins', sans-serif;
 }
-
-.big-circle.active-btn {
-    background: linear-gradient(135deg, #18181B 0%, #000000 100%);
-    box-shadow: inset 0 0 0 2px #F5D061, 0 15px 35px rgba(197, 147, 39, 0.3), 0 0 60px rgba(197, 147, 39, 0.2);
-    cursor: pointer;
-    animation: pulseGlow 2s infinite;
+.btn-claim-normal:active { transform: scale(0.97); }
+.btn-claim-claimed {
+    background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.5); box-shadow: none; border: 1px dashed rgba(255,255,255,0.2); cursor: default; pointer-events: none; padding: 12px; margin-top: 24px; border-radius: 12px; width: 100%; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; text-transform: uppercase; font-size: 13px; font-family: 'Poppins', sans-serif;
 }
-@keyframes pulseGlow {
-    0% { box-shadow: inset 0 0 0 2px #F5D061, 0 0 0 rgba(197, 147, 39, 0.6); }
-    70% { box-shadow: inset 0 0 0 2px #F5D061, 0 0 40px rgba(197, 147, 39, 0); }
-    100% { box-shadow: inset 0 0 0 2px #F5D061, 0 0 0 rgba(197, 147, 39, 0); }
-}
-
-.big-circle.claimed-btn {
-    background: rgba(255,255,255,0.02);
-    border: 2px dashed rgba(255,255,255,0.1);
-    cursor: default;
-}
-
-.bc-icon { font-size: 50px; margin-bottom: 10px; }
-.active-btn .bc-icon {
-    background: linear-gradient(135deg, #F5D061 0%, #C59327 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
-.claimed-btn .bc-icon { color: rgba(255,255,255,0.1); }
-
-.bc-text { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
-.active-btn .bc-text { color: #fff; }
-.claimed-btn .bc-text { color: rgba(255,255,255,0.3); }
-
-.form-claim { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 10; opacity: 0; cursor: pointer; }
-
-/* Background ring decorations */
-.ring-1 { position: absolute; width: 260px; height: 260px; border-radius: 50%; border: 1px solid rgba(197, 147, 39, 0.1); z-index: 1; }
-.ring-2 { position: absolute; width: 340px; height: 340px; border-radius: 50%; border: 1px dashed rgba(197, 147, 39, 0.05); z-index: 0; }
 
 /* ====== TIMELINE TRACKER ====== */
-.tracker-box { margin: 0 20px 40px; padding: 25px 20px; background: rgba(255,255,255,0.02); border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); }
+.tracker-box { margin: 0 16px 30px; padding: 25px 20px; background: #023e35; border-radius: 20px; border: 1px solid #035246; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
 .tb-head { text-align: center; margin-bottom: 25px; }
-.tb-head h3 { font-size: 13px; font-weight: 800; color: #fff; margin-bottom: 4px;}
-.tb-head p { font-size: 9.5px; color: rgba(255,255,255,0.4); }
+.tb-head h3 { font-size: 13px; font-weight: 800; color: #facc15; margin-bottom: 4px;}
+.tb-head p { font-size: 10px; color: rgba(255,255,255,0.7); }
 
-.path-wrapper { position: relative; height: 40px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; }
+.path-wrapper { position: relative; height: 40px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
 
-.path-line-bg { position: absolute; top: 19px; left: 10px; right: 10px; height: 2px; background: rgba(255,255,255,0.1); z-index: 1; }
+.path-line-bg { position: absolute; top: 19px; left: 10px; right: 10px; height: 3px; background: rgba(0,0,0,0.3); border-radius: 2px; z-index: 1; }
 <?php 
 // calculate line fill percentage
 $last_done_day = 0;
@@ -181,44 +154,44 @@ if ($last_done_day > 1) {
     else $fill_pct = (($last_done_day - 1) / 6) * 100;
 }
 ?>
-.path-line-fill { position: absolute; top: 19px; left: 10px; height: 2px; background: #F5D061; z-index: 2; width: <?= $fill_pct ?>%; transition: 1s ease-in-out; box-shadow: 0 0 8px rgba(245, 208, 97, 0.8);}
+.path-line-fill { position: absolute; top: 19px; left: 10px; height: 3px; background: #facc15; z-index: 2; width: <?= $fill_pct ?>%; transition: 1s ease-in-out; border-radius: 2px; box-shadow: 0 0 8px rgba(250, 204, 21, 0.6);}
 
 .step-node { 
-    width: 20px; height: 20px; border-radius: 50%; background: #111; border: 2px solid rgba(255,255,255,0.1);
+    width: 22px; height: 22px; border-radius: 50%; background: #012b26; border: 2px solid rgba(255,255,255,0.2);
     position: relative; z-index: 3; display: flex; align-items: center; justify-content: center;
 }
-.step-node.done { background: #F5D061; border-color: #F5D061; box-shadow: 0 0 10px rgba(245, 208, 97, 0.5); }
-.step-node.today { border-color: #F5D061; background: #111; }
-.step-node.today::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #F5D061; }
-.step-node i { font-size: 9px; color: #111; }
+.step-node.done { background: #facc15; border-color: #facc15; box-shadow: 0 0 10px rgba(250, 204, 21, 0.4); }
+.step-node.today { border-color: #facc15; background: #023e35; }
+.step-node.today::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #facc15; }
+.step-node i { font-size: 10px; color: #012b26; }
 
-.path-labels { display: flex; justify-content: space-between; padding: 0 2px;}
-.p-lbl { width: 20px; text-align: center; font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.3); }
-.p-lbl.active { color: #F5D061; }
+.path-labels { display: flex; justify-content: space-between; padding: 0;}
+.p-lbl { width: 22px; text-align: center; font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.5); }
+.p-lbl.active { color: #facc15; }
 
 /* ====== HISTORY BOTTOM ====== */
-.history-title { padding: 0 20px; font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; margin-bottom: 15px; }
-.h-scroll { padding: 0 20px; display: flex; flex-direction: column; gap: 10px; }
+.history-title { padding: 0 20px; font-size: 12px; font-weight: 800; color: #facc15; text-transform: uppercase; margin-bottom: 15px; }
+.h-scroll { padding: 0 16px; display: flex; flex-direction: column; gap: 8px; }
 .h-card {
-    background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); border-radius: 12px; padding: 15px;
-    display: flex; justify-content: space-between; align-items: center;
+    background: #023e35; border: 1px solid rgba(250, 204, 21, 0.2); border-radius: 14px; padding: 14px 16px;
+    display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 .hc-left { display: flex; flex-direction: column; gap: 4px; }
-.hc-left span { font-size: 13px; font-weight: 700; color: #fff; }
-.hc-left small { font-size: 9px; color: rgba(255,255,255,0.3); }
-.hc-right { font-size: 14px; font-weight: 800; color: #10B981; }
+.hc-left span { font-size: 12px; font-weight: 700; color: #fff; }
+.hc-left small { font-size: 10px; color: rgba(255,255,255,0.6); }
+.hc-right { font-size: 14px; font-weight: 800; color: #facc15; }
 
 /* ====== TOAST ====== */
 .ci-toast {
     position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-    background: #111; border-radius: 14px; padding: 15px 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(16, 185, 129, 0.3); z-index: 9999; transition: 0.4s; width: 90%; max-width: 320px;
-    color: #fff;
+    background: #023e35; border-radius: 14px; padding: 15px 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(250, 204, 21, 0.3); z-index: 9999; transition: 0.4s; width: 90%; max-width: 320px;
+    color: #fff; border: 1px solid #facc15;
 }
 .cit-title { font-size: 13px; font-weight: 800; color: #fff; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;}
-.cit-title i { color: #10B981; }
-.cit-desc { font-size: 11px; color: rgba(255,255,255,0.6); }
-.cit-desc span { color: #10B981; font-weight: 700; }
+.cit-title i { color: #facc15; }
+.cit-desc { font-size: 11px; color: rgba(255,255,255,0.7); }
+.cit-desc span { color: #facc15; font-weight: 700; }
 </style>
 </head>
 <body>
@@ -258,33 +231,7 @@ if ($last_done_day > 1) {
       </div>
   </div>
 
-  <!-- BIG TAP AREA -->
-  <div class="hero-tap-area">
-      <div class="ring-2"></div>
-      <div class="ring-1"></div>
-      
-      <?php if ($already): ?>
-      <!-- CLAIMED -->
-      <div class="big-circle claimed-btn">
-          <i class="fa-solid fa-gift bc-icon"></i>
-          <span class="bc-text">Telah Diambil</span>
-      </div>
-      <?php else: ?>
-      <!-- ACTIVE TO CLAIM -->
-      <div class="big-circle active-btn">
-          <i class="fa-solid fa-fingerprint bc-icon" style="background: linear-gradient(135deg, #F5D061 0%, #C59327 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
-          <span class="bc-text">Tap to Claim</span>
-          
-          <form method="POST">
-            <?php if (function_exists('csrf_token')): ?>
-            <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
-            <?php endif; ?>
-            <input type="hidden" name="do_checkin" value="1">
-            <button type="submit" class="form-claim"></button>
-          </form>
-      </div>
-      <?php endif; ?>
-  </div>
+
 
   <!-- TIMELINE PROGRESS -->
   <div class="tracker-box">
@@ -320,6 +267,22 @@ if ($last_done_day > 1) {
           <div class="p-lbl <?=$active?>"><?= $day_short[$d-1] ?></div>
           <?php endfor; ?>
       </div>
+
+      <?php if ($already): ?>
+      <div class="btn-claim-claimed">
+          <i class="fa-solid fa-check-double"></i> Telah Diambil Hari ini
+      </div>
+      <?php else: ?>
+      <form method="POST">
+        <?php if (function_exists('csrf_token')): ?>
+        <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
+        <?php endif; ?>
+        <input type="hidden" name="do_checkin" value="1">
+        <button type="submit" class="btn-claim-normal">
+            <i class="fa-solid fa-gift"></i> Ambil Bonus Hari Ini
+        </button>
+      </form>
+      <?php endif; ?>
   </div>
 
   <!-- HISTORY -->

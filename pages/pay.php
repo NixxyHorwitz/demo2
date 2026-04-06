@@ -94,240 +94,202 @@ require '../lib/header_user.php';
 ?>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Poppins', sans-serif; background: #0A0A0A; color: #fff; min-height: 100vh; -webkit-font-smoothing: antialiased; padding-bottom: 80px; }
+body { font-family: 'Poppins', sans-serif; background: #012b26; color: #fff; min-height: 100vh; -webkit-font-smoothing: antialiased; padding-bottom: 80px; }
 .page { max-width: 480px; margin: 0 auto; min-height: 100vh; }
 
-/* HEADER */
-.topbar { display: flex; align-items: center; padding: 15px 15px 5px; gap: 12px; }
-.tb-back { width: 32px; height: 32px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 12px; flex-shrink: 0; }
-.tb-title { flex: 1; text-align: center; font-size: 13px; font-weight: 800; color: #fff; padding-right: 32px; }
+/* HEADER CURVED */
+.h-bg { background: linear-gradient(135deg, #023e35 0%, #01312b 100%); padding: 25px 20px 90px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; position: relative; box-shadow: 0 8px 25px rgba(0,0,0,0.3); z-index: 1; }
+.h-nav { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+.back-btn { width: 36px; height: 36px; border-radius: 12px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
+.h-title { display: flex; flex-direction: column; }
+.h-title h3 { font-size: 16px; font-weight: 800; color: #fff; line-height: 1.2; }
 
-/* ── SUCCESS STATE ── */
-.result-wrap { padding: 50px 20px; text-align: center; }
-.result-ic { width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
-.result-ic.ok  { background: rgba(16,185,129,0.1); border: 2px solid #10B981; color: #10B981; }
-.result-ic.err { background: rgba(239,68,68,0.1); border: 2px solid #ef4444; color: #ef4444; }
-.result-ic svg { width: 34px; height: 34px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-.result-title  { font-size: 20px; font-weight: 800; color: #fff; }
-.result-amount { font-size: 30px; font-weight: 800; color: #F5D061; margin-top: 4px; }
-.result-sub    { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 8px; line-height: 1.6; }
-.result-btn { margin-top: 28px; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px; border-radius: 12px; background: linear-gradient(135deg,#C59327,#F5D061); color: #111; text-decoration: none; font-size: 13.5px; font-weight: 800; box-shadow: 0 6px 20px rgba(197,147,39,0.3); }
-.result-btn.sec { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.1); box-shadow: none; margin-top: 10px; }
+/* ── SUCCESS/FAIL STATE ── */
+.result-wrap { margin: -40px 20px 20px; padding: 40px 20px; text-align: center; background: #023e35; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); position: relative; z-index: 2; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+.result-ic { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+.result-ic.ok  { background: rgba(52, 211, 153, 0.15); border: 2px solid #34d399; color: #34d399; }
+.result-ic.err { background: rgba(2ef, 68, 68, 0.15); border: 2px solid #fca5a5; color: #fca5a5; }
+.result-ic i { font-size: 36px; }
+.result-title  { font-size: 18px; font-weight: 800; color: #fff; }
+.result-amount { font-size: 28px; font-weight: 800; color: #facc15; margin-top: 8px; font-family: monospace;}
+.result-sub    { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 12px; line-height: 1.5; padding: 0 10px;}
+.result-btn { margin-top: 24px; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px; border-radius: 14px; background: #facc15; color: #012b26; text-decoration: none; font-size: 13px; font-weight: 800; }
+.result-btn.sec { background: rgba(255,255,255,0.05); color: #fff; margin-top: 10px; border: 1px solid rgba(255,255,255,0.1); }
 
 /* ── AMOUNT HERO ── */
 .amount-hero {
-    margin: 8px 15px 0;
-    background: linear-gradient(135deg, #C59327 0%, #F5D061 100%);
-    border-radius: 16px; padding: 18px; text-align: center;
-    box-shadow: 0 8px 24px rgba(197,147,39,0.3);
-    position: relative; overflow: hidden;
+    margin: -40px 20px 20px;
+    background: rgba(250, 204, 21, 0.05); border: 1px solid rgba(250, 204, 21, 0.2); border-radius: 20px; padding: 24px; text-align: center;
+    backdrop-filter: blur(10px); position: relative; z-index: 2; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
-.ah-label { font-size: 10px; font-weight: 700; color: rgba(0,0,0,0.5); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-.ah-amount { font-size: 30px; font-weight: 800; color: #111; letter-spacing: -1px; line-height: 1; }
-.ah-badge { display: inline-flex; align-items: center; gap: 5px; margin-top: 8px; background: rgba(0,0,0,0.12); border-radius: 20px; padding: 4px 12px; font-size: 10px; font-weight: 700; color: #111; }
-.ah-badge i { font-size: 9px; }
+.ah-label { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.ah-amount { font-size: 32px; font-weight: 800; color: #facc15; font-family: monospace; letter-spacing: -1px; }
 
-/* ── TIMER STRIP ── */
-.timer-strip { margin: 10px 15px 0; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; }
-.ts-left { display: flex; align-items: center; gap: 8px; font-size: 11px; color: rgba(255,255,255,0.5); font-weight: 600; }
-.ts-left i { color: #F5D061; }
-#countdown { font-size: 15px; font-weight: 800; font-family: monospace; color: #F5D061; letter-spacing: 1px; }
+/* ── COUNTDOWN ── */
+.timer-box { margin: 0 20px 16px; background: #023e35; border: 1px dashed rgba(250,204,21,0.4); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+.timer-box p { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.6); }
+#countdown { font-size: 20px; font-weight: 800; color: #facc15; font-family: monospace; letter-spacing: 2px;}
 
 /* ── QR SECTION ── */
-.qr-section { margin: 10px 15px 0; background: rgba(255,255,255,0.02); border: 1px solid rgba(197,147,39,0.2); border-radius: 16px; overflow: hidden; }
-.qs-head { padding: 12px 14px; border-bottom: 1px dashed rgba(255,255,255,0.06); display: flex; align-items: center; gap: 8px; }
-.qs-head i { color: #F5D061; font-size: 12px; }
-.qs-head span { font-size: 10.5px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.5px; }
-.qr-canvas { padding: 20px; display: flex; flex-direction: column; align-items: center; }
-.qr-frame { width: 200px; height: 200px; background: #fff; border-radius: 14px; padding: 10px; box-shadow: 0 0 0 4px rgba(197,147,39,0.3); margin-bottom: 14px; cursor: pointer; }
+.qr-section { margin: 0 20px 16px; background: #023e35; border-radius: 16px; overflow: hidden; padding: 20px; display: flex; flex-direction: column; align-items: center; border: 1px solid #035246;}
+.qs-title { font-size: 11px; font-weight: 800; color: #fff; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px;}
+.qr-frame { width: 220px; height: 220px; background: #fff; border-radius: 16px; padding: 12px; border: 4px solid #facc15; margin-bottom: 20px; cursor: pointer; }
 .qr-frame img { width: 100%; height: 100%; object-fit: contain; }
-.btn-dl { display: flex; align-items: center; justify-content: center; gap: 6px; background: rgba(197,147,39,0.1); border: 1px solid rgba(197,147,39,0.3); color: #F5D061; border-radius: 10px; padding: 9px 20px; font-size: 11.5px; font-weight: 700; font-family: 'Poppins', sans-serif; cursor: pointer; transition: 0.2s; }
-.btn-dl:active { background: rgba(197,147,39,0.2); }
+.btn-dl { width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: rgba(250, 204, 21, 0.1); border: 1px solid rgba(250, 204, 21, 0.3); color: #facc15; border-radius: 12px; padding: 12px; font-size: 12px; font-weight: 700; cursor: pointer; }
 
-/* ── DETAIL BOX ── */
-.detail-box { margin: 10px 15px 0; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; overflow: hidden; }
-.db-head { padding: 10px 14px; border-bottom: 1px dashed rgba(255,255,255,0.06); display: flex; align-items: center; gap: 8px; }
-.db-head i { color: #F5D061; font-size: 12px; }
-.db-head span { font-size: 10.5px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.5px; }
-.d-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px dashed rgba(255,255,255,0.04); }
-.d-row:last-child { border-bottom: none; }
-.d-lbl { font-size: 10.5px; font-weight: 600; color: rgba(255,255,255,0.45); }
-.d-val { font-size: 12px; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 8px; font-family: monospace; letter-spacing: 0.5px; }
-.d-val.gold { color: #F5D061; }
-.btn-cp { width: 26px; height: 26px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 7px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.15s; flex-shrink: 0; }
-.btn-cp i { font-size: 10px; color: rgba(255,255,255,0.5); }
-.btn-cp:active { background: rgba(197,147,39,0.2); }
-.btn-cp:active i { color: #F5D061; }
+/* ── MANUAL REKENING ── */
+.rek-box { margin: 0 20px 16px; background: #023e35; border: 1px solid rgba(250,204,21,0.2); border-radius: 16px; padding: 16px; text-align: center;}
+.rb-label { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.rb-rek { font-size: 24px; font-weight: 800; color: #facc15; font-family: monospace; letter-spacing: 2px; }
+.rb-name { font-size: 11px; font-weight: 600; color: #fff; margin-top: 4px; margin-bottom: 16px; }
+.rb-copy { width: 100%; display: flex; align-items: center; justify-content: center; gap: 6px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 12px; font-size: 12px; font-weight: 700; color: #fff; cursor: pointer; }
 
-/* ── BANK REK BOX ── */
-.rek-box { margin: 10px 15px 0; background: linear-gradient(135deg,#18181B,#111); border: 1px solid rgba(197,147,39,0.25); border-radius: 14px; padding: 14px; }
-.rb-label { font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-.rb-rek { font-size: 22px; font-weight: 800; color: #F5D061; font-family: monospace; letter-spacing: 2px; }
-.rb-name { font-size: 10.5px; font-weight: 600; color: rgba(255,255,255,0.5); margin-top: 2px; margin-bottom: 10px; }
-.rb-copy { display: flex; align-items: center; justify-content: center; gap: 6px; background: rgba(197,147,39,0.1); border: 1px solid rgba(197,147,39,0.3); border-radius: 8px; padding: 8px; font-size: 11px; font-weight: 700; color: #F5D061; cursor: pointer; font-family: 'Poppins',sans-serif; }
+/* ── INFO BOXES ── */
+.info-wrap { margin: 0 20px 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 16px; }
+.i-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px dashed rgba(255,255,255,0.08); }
+.i-row:first-child { padding-top: 0; }
+.i-row:last-child { padding-bottom: 0; border-bottom: none; }
+.i-lbl { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.5); }
+.i-val { font-size: 13px; font-weight: 800; color: #fff; font-family: monospace; display: flex; align-items: center; gap: 8px;}
+.i-val.gold { color: #facc15; }
+.btn-cp { width: 24px; height: 24px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #fff; font-size: 10px;}
 
-/* ── GUIDE ── */
-.guide-box { margin: 10px 15px 0; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 14px; padding: 14px; }
-.gb-title { font-size: 10px; font-weight: 800; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
-.gb-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 8px; }
-.gb-item:last-child { margin-bottom: 0; }
-.gb-num { width: 18px; height: 18px; background: rgba(197,147,39,0.15); color: #F5D061; border-radius: 5px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 9px; font-weight: 800; }
-.gb-text { font-size: 10.5px; color: rgba(255,255,255,0.5); line-height: 1.5; font-weight: 500; }
+/* ── GUIDE BOX ── */
+.guide-box { margin: 0 20px 20px; }
+.gb-title { font-size: 11px; font-weight: 800; color: #facc15; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+.gb-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; }
+.gb-num { width: 20px; height: 20px; background: rgba(250, 204, 21, 0.1); color: #facc15; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 10px; font-weight: 800; }
+.gb-text { font-size: 11px; color: rgba(255,255,255,0.6); line-height: 1.5; font-weight: 500; }
+.gb-text b { color: #fff;}
 
-/* ── CTA BUTTON ── */
-.cta-wrap { padding: 15px 15px 0; }
-.btn-pay { width: 100%; padding: 16px; border: none; border-radius: 14px; font-size: 14px; font-weight: 800; font-family: 'Poppins',sans-serif; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.15s; background: linear-gradient(135deg,#C59327,#F5D061); color: #111; box-shadow: 0 8px 24px rgba(197,147,39,0.3); }
-.btn-pay:active { transform: scale(0.97); }
-.btn-pay:disabled { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.3); box-shadow: none; cursor: not-allowed; }
-.btn-pay i { font-size: 16px; }
-
-/* ── SUCCESS OVERLAY ── */
-.suc-ov { position: fixed; inset: 0; z-index: 9999; background: #0A0A0A; display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 32px; }
-.suc-ov.show { display: flex; animation: soIn 0.4s cubic-bezier(.22,1,.36,1); }
-@keyframes soIn { from{opacity:0;transform:scale(0.9)} to{opacity:1;transform:scale(1)} }
-.suc-ring { width: 90px; height: 90px; border-radius: 50%; background: rgba(16,185,129,0.1); border: 2px solid #10B981; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
-.suc-ring i { font-size: 36px; color: #10B981; }
-.suc-title { font-size: 22px; font-weight: 800; color: #fff; }
-.suc-sub { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 6px; }
-.suc-amt { font-size: 34px; font-weight: 800; color: #F5D061; margin: 8px 0; }
-
-/* ── TOAST ── */
-.toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1a1a1a; border: 1px solid rgba(197,147,39,0.3); color: #F5D061; font-size: 11.5px; font-weight: 700; padding: 10px 18px; border-radius: 30px; opacity: 0; transition: 0.3s; z-index: 99999; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); pointer-events: none; }
+/* TOAST */
+.toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(20px); background: #023e35; border: 1px solid rgba(250,204,21,0.5); color: #facc15; font-size: 11.5px; font-weight: 700; padding: 10px 18px; border-radius: 30px; opacity: 0; transition: 0.3s; z-index: 99999; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); pointer-events: none; }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-.toast i { font-size: 12px; }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <div class="page">
 
-  <!-- HEADER -->
-  <div class="topbar">
-    <a href="javascript:history.back()" class="tb-back"><i class="fa-solid fa-chevron-left"></i></a>
-    <div class="tb-title">Pembayaran</div>
+  <!-- HEADER CURVED -->
+  <div class="h-bg">
+    <div class="h-nav">
+      <a href="javascript:history.back()" class="back-btn"><i class="fa-solid fa-chevron-left"></i></a>
+      <div class="h-title">
+        <h3>Pembayaran</h3>
+      </div>
+    </div>
   </div>
 
 <?php if ($status === 'Success'): ?>
   <!-- SUCCESS -->
   <div class="result-wrap">
-    <div class="result-ic ok"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-    <div class="result-title">Pembayaran Berhasil!</div>
+    <div class="result-ic ok"><i class="fa-solid fa-check"></i></div>
+    <div class="result-title">Top Up Berhasil!</div>
     <div class="result-amount">Rp<?= number_format($amount,0,',','.') ?></div>
-    <div class="result-sub">Saldo berhasil ditambahkan ke akun Anda.</div>
-    <a href="<?= base_url('pages/history') ?>" class="result-btn"><i class="fa-solid fa-clock-rotate-left"></i> Lihat Riwayat</a>
-    <a href="<?= base_url('') ?>" class="result-btn sec"><i class="fa-solid fa-house"></i> Beranda</a>
+    <div class="result-sub">Dana telah masuk ke saldo akun Anda. Nikmati kemudahan berinvestasi.</div>
+    <a href="<?= base_url('pages/history') ?>" class="result-btn"><i class="fa-solid fa-clock-rotate-left"></i> Cek Riwayat</a>
+    <a href="<?= base_url('') ?>" class="result-btn sec"><i class="fa-solid fa-house"></i> Kembali ke Dashboard</a>
   </div>
 
 <?php elseif ($status !== 'Pending'): ?>
   <!-- EXPIRED/FAILED -->
   <div class="result-wrap">
-    <div class="result-ic err"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
-    <div class="result-title">Transaksi Gagal</div>
-    <div class="result-sub">Transaksi ini telah kedaluwarsa atau dibatalkan oleh sistem.</div>
-    <a href="<?= base_url('pages/deposit') ?>" class="result-btn"><i class="fa-solid fa-rotate-right"></i> Coba Lagi</a>
+    <div class="result-ic err"><i class="fa-solid fa-xmark"></i></div>
+    <div class="result-title">Transaksi Batal</div>
+    <div class="result-sub">Sesi tagihan ini telah kedaluwarsa atau dibatalkan. Silakan buat tiket baru jika masih ingin top up.</div>
+    <a href="<?= base_url('pages/deposit') ?>" class="result-btn"><i class="fa-solid fa-rotate-right"></i> Coba Top Up Lagi</a>
   </div>
 
 <?php else: ?>
 
   <!-- AMOUNT HERO -->
   <div class="amount-hero">
-    <div class="ah-label">Total Tagihan</div>
+    <div class="ah-label">TOTAL PEMBAYARAN</div>
     <div class="ah-amount">Rp<?= number_format($amount,0,',','.') ?></div>
-    <div class="ah-badge">
-      <i class="fa-solid fa-circle-dot"></i>
-      Menunggu Pembayaran
+    <div style="display:inline-flex; align-items:center; gap:6px; margin-top:8px; padding: 4px 12px; background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 20px; font-size: 9px; font-weight: 800; color: #34d399; text-transform: uppercase;">
+       <i class="fa-solid fa-spinner fa-spin"></i> Menunggu...
     </div>
   </div>
 
   <!-- TIMER -->
-  <div class="timer-strip">
-    <div class="ts-left"><i class="fa-solid fa-hourglass-half"></i> Selesaikan pembayaran sebelum</div>
-    <span id="countdown">--:--</span>
+  <div class="timer-box">
+    <p>Selesaikan pembayaran sebelum waku habis:</p>
+    <div id="countdown">--:--</div>
   </div>
 
   <?php if ($is_qris && ($qris_img || $qris_url)): ?>
-  <!-- QR CODE -->
+  <!-- QR SECTION -->
   <div class="qr-section">
-    <div class="qs-head"><i class="fa-solid fa-qrcode"></i><span>Scan QRIS</span></div>
-    <div class="qr-canvas">
-      <div class="qr-frame" onclick="openQRModal()" title="Klik untuk perbesar">
-        <img id="qris_image" src="<?= base_url('pages/pay') ?>?action=qr_image&trxid=<?= urlencode($trxtopup) ?>" alt="QRIS" onerror="this.parentNode.innerHTML='<div style=\'text-align:center;font-size:11px;color:rgba(255,255,255,0.3);padding-top:80px\'>Gagal memuat QR</div>'">
-      </div>
-      <button class="btn-dl" onclick="downloadQR()">
-        <i class="fa-solid fa-download"></i> Simpan QR Code
-      </button>
+    <div class="qs-title"><i class="fa-solid fa-qrcode" style="margin-right:6px;"></i> Scan Barcode QRIS</div>
+    <div class="qr-frame" onclick="openQRModal()" title="Klik untuk perbesar">
+      <img id="qris_image" src="<?= base_url('pages/pay') ?>?action=qr_image&trxid=<?= urlencode($trxtopup) ?>" alt="QRIS" onerror="this.parentNode.innerHTML='<div style=\'text-align:center;font-size:11px;color:rgba(255,255,255,0.3);padding-top:80px\'>Gagal memuat QR</div>'">
     </div>
+    <button class="btn-dl" onclick="downloadQR()">
+      <i class="fa-solid fa-download"></i> Simpan ke Galeri
+    </button>
   </div>
   <?php endif; ?>
 
   <?php if (!$is_qris && $rek_number): ?>
   <!-- REKENING BOX -->
   <div class="rek-box">
-    <div class="rb-label"><?= htmlspecialchars($method) ?> — No. Rekening</div>
+    <div class="rb-label"><?= htmlspecialchars($method) ?> — Nomor Rekening Tujuan</div>
     <div class="rb-rek"><?= htmlspecialchars($rek_number) ?></div>
     <?php if ($rek_owner): ?><div class="rb-name">a.n <?= htmlspecialchars($rek_owner) ?></div><?php endif; ?>
-    <button class="rb-copy" onclick="cp('<?= htmlspecialchars($rek_number, ENT_QUOTES) ?>', 'No Rekening disalin!')">
-      <i class="fa-solid fa-copy"></i> Salin Nomor Rekening
+    <button class="rb-copy" onclick="cp('<?= htmlspecialchars($rek_number, ENT_QUOTES) ?>', 'Nomor Rekening disalin!')">
+      <i class="fa-solid fa-copy"></i> Salin Nomor Tujuan
     </button>
   </div>
   <?php endif; ?>
 
-  <!-- DETAIL -->
-  <div class="detail-box">
-    <div class="db-head"><i class="fa-solid fa-receipt"></i><span>Detail Transaksi</span></div>
-    <div class="d-row">
-      <div class="d-lbl">Metode</div>
-      <div class="d-val gold"><?= htmlspecialchars($method) ?></div>
+  <!-- DETAIL INFO BOX -->
+  <div class="info-wrap">
+    <div class="i-row">
+      <div class="i-lbl">Metode Bayar</div>
+      <div class="i-val gold"><?= htmlspecialchars($method) ?></div>
     </div>
     <?php if (!$is_qris && $unique_code > 0): ?>
-    <div class="d-row">
-      <div class="d-lbl">Kode Unik</div>
-      <div class="d-val gold">+<?= $unique_code ?></div>
+    <div class="i-row">
+      <div class="i-lbl">Kode Unik Transfer</div>
+      <div class="i-val gold" style="color:#34d399;">+<?= $unique_code ?></div>
     </div>
     <?php endif; ?>
-    <div class="d-row">
-      <div class="d-lbl">No. Referensi</div>
-      <div class="d-val">
-        <?= htmlspecialchars($trxtopup) ?>
-        <button class="btn-cp" onclick="cp('<?= htmlspecialchars($trxtopup, ENT_QUOTES) ?>', 'Referensi disalin!')"><i class="fa-regular fa-copy"></i></button>
+    <div class="i-row">
+      <div class="i-lbl">Nomor Referensi</div>
+      <div class="i-val">
+        <span><?= htmlspecialchars($trxtopup) ?></span>
+        <button class="btn-cp" onclick="cp('<?= htmlspecialchars($trxtopup, ENT_QUOTES) ?>', 'Referensi disalin!')"><i class="fa-solid fa-copy"></i></button>
       </div>
     </div>
   </div>
 
-  <!-- PANDUAN -->
+  <!-- PANDUAN BOX -->
   <div class="guide-box">
-    <div class="gb-title">Panduan Pembayaran</div>
+    <div class="gb-title"><i class="fa-solid fa-book-open" style="margin-right:6px;"></i> Cara Pembayaran</div>
     <?php if ($is_qris): ?>
-    <div class="gb-item"><div class="gb-num">1</div><div class="gb-text">Buka aplikasi e-Wallet atau m-Banking Anda.</div></div>
-    <div class="gb-item"><div class="gb-num">2</div><div class="gb-text">Scan QRIS di atas atau gunakan gambar yang sudah disimpan.</div></div>
-    <div class="gb-item"><div class="gb-num">3</div><div class="gb-text">Pastikan nominal tepat, lalu konfirmasi pembayaran.</div></div>
+    <div class="gb-item"><div class="gb-num">1</div><div class="gb-text">Buka aplikasi dompet digital / e-Wallet kesayangan Anda.</div></div>
+    <div class="gb-item"><div class="gb-num">2</div><div class="gb-text">Ketuk opsi <b>Scan QRIS</b> lalu pindai barcode di atas atau upload dari galeri Anda.</div></div>
+    <div class="gb-item"><div class="gb-num">3</div><div class="gb-text">Periksa kembali nominal yang tertera, jika sesuai tekan Konfirmasi Bayar.</div></div>
     <?php else: ?>
-    <div class="gb-item"><div class="gb-num">1</div><div class="gb-text">Transfer ke rekening yang tertera menggunakan ATM atau m-Banking.</div></div>
-    <div class="gb-item"><div class="gb-num">2</div><div class="gb-text">Masukkan nominal secara tepat termasuk 3 digit kode unik.</div></div>
-    <div class="gb-item"><div class="gb-num">3</div><div class="gb-text">Tekan tombol di bawah setelah transfer selesai.</div></div>
-    <?php if ($bank_note): ?><div class="gb-item"><div class="gb-num">!</div><div class="gb-text"><?= htmlspecialchars($bank_note) ?></div></div><?php endif; ?>
+    <div class="gb-item"><div class="gb-num">1</div><div class="gb-text">Buka aplikasi m-Banking atau kunjungi ATM terdekat.</div></div>
+    <div class="gb-item"><div class="gb-num">2</div><div class="gb-text">Lakukan transfer persis ke <b>Nomor Rekening Tujuan</b> yang tertera di layar Anda.</div></div>
+    <div class="gb-item"><div class="gb-num">3</div><div class="gb-text">Ketik nominal transfer dengan tepat <b>termasuk 3 angka unik</b> di belakangnya agar terverifikasi instan.</div></div>
+    <?php if ($bank_note): ?><div class="gb-item"><div class="gb-num">!</div><div class="gb-text text-yellow-400"><?= htmlspecialchars($bank_note) ?></div></div><?php endif; ?>
     <?php endif; ?>
   </div>
 
 <?php endif; ?>
 </div>
 
-<!-- SUCCESS OVERLAY -->
-<div class="suc-ov" id="suc_ov">
-  <div class="suc-ring"><i class="fa-solid fa-check"></i></div>
-  <div class="suc-title">Pembayaran Sukses!</div>
-  <div class="suc-sub">Saldo akun berhasil ditambahkan</div>
-  <div class="suc-amt" id="suc_amount">Rp<?= number_format($amount,0,',','.') ?></div>
-</div>
-
 <!-- TOAST -->
-<div class="toast" id="toast"><i class="fa-solid fa-check"></i><span id="toastMsg"></span></div>
+<div class="toast" id="toast"><i class="fa-solid fa-check-circle"></i><span id="toastMsg"></span></div>
 
-<!-- QR FULLSCREEN MODAL -->
-<div id="qrModal" style="display:none;position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,.9);align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);" onclick="closeQRModal()">
-  <div style="max-width:320px;width:100%;background:#111;border:1px solid rgba(197,147,39,0.3);border-radius:18px;padding:16px;position:relative;" onclick="event.stopPropagation()">
-    <button onclick="closeQRModal()" style="position:absolute;top:10px;right:10px;background:rgba(255,255,255,0.08);border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;"><i class="fa-solid fa-xmark"></i></button>
-    <img id="qrModalImg" src="" alt="QRIS" style="width:100%;border-radius:10px;display:block;">
-    <div style="text-align:center;margin-top:10px;font-size:10.5px;color:rgba(255,255,255,0.4);font-family:'Poppins',sans-serif;">Sentuh area luar untuk menutup</div>
+<!-- FULLSCREEN QR MODAL -->
+<div id="qrModal" style="display:none;position:fixed;inset:0;z-index:9998;background:rgba(1, 43, 38, 0.9);align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);" onclick="closeQRModal()">
+  <div style="max-width:320px;width:100%;background:#023e35;border:1px solid #facc15;border-radius:24px;padding:20px;position:relative;" onclick="event.stopPropagation()">
+    <button onclick="closeQRModal()" style="position:absolute;top:10px;right:10px;background:rgba(250, 204, 21, 0.2);border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#facc15;font-size:16px;"><i class="fa-solid fa-xmark"></i></button>
+    <img id="qrModalImg" src="" alt="QRIS" style="width:100%;border-radius:12px;display:block;">
+    <div style="text-align:center;margin-top:16px;font-size:11px;color:rgba(255,255,255,0.6);font-weight:600;">Sentuh area luar untuk menutup</div>
   </div>
 </div>
 
