@@ -10,14 +10,10 @@ require_once __DIR__ . '/../lib/is_login.php';
    DAFTAR BANK & E-WALLET
 ══════════════════════════════════════════════ */
 $AVAILABLE_METHODS = [
-    'DANA'      => 'DANA',
-    'OVO'       => 'OVO',
-    'GOPAY'     => 'GoPay',
-    'SHOPEE'    => 'ShopeePay',
-    'BCA'       => 'Bank BCA',
-    'MANDIRI'   => 'Bank Mandiri',
-    'BRI'       => 'Bank BRI',
-    'BNI'       => 'Bank BNI'
+    'DANA'   => ['label' => 'DANA',       'color' => '#118EEA', 'icon' => 'fa-solid fa-wallet'],
+    'OVO'    => ['label' => 'OVO',        'color' => '#4C3494', 'icon' => 'fa-solid fa-mobile-screen-button'],
+    'GOPAY'  => ['label' => 'GoPay',      'color' => '#00AED6', 'icon' => 'fa-solid fa-g'],
+    'SHOPEE' => ['label' => 'ShopeePay', 'color' => '#EE4D2D', 'icon' => 'fa-solid fa-bag-shopping'],
 ];
 
 /* ══════════════════════════════════════════════
@@ -49,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
         $b_errors = [];
 
-        if (empty($b_rekening) || !isset($AVAILABLE_METHODS[$b_rekening])) {
+        if (empty($b_rekening) || !array_key_exists($b_rekening, $AVAILABLE_METHODS)) {
             $b_errors[] = 'Pilih metode bank / e-wallet yang valid.';
         }
         if (strlen($b_no_rek) < 8) {
@@ -168,6 +164,46 @@ body { font-family: 'Poppins', sans-serif; background: #012b26; color: #fff; -we
 .f-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 14px; font-size: 13px; font-weight: 800; border-radius: 14px; cursor: pointer; text-align: center; }
 
+/* CUSTOM DROPDOWN */
+.cd-wrap { position: relative; user-select: none; }
+.cd-selected {
+  display: flex; align-items: center; gap: 12px;
+  background: #012b26; border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px; padding: 13px 14px; cursor: pointer;
+  transition: 0.2s;
+}
+.cd-selected:hover, .cd-wrap.open .cd-selected { border-color: #facc15; box-shadow: 0 0 0 3px rgba(250,204,21,0.1); }
+.cd-placeholder { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.4); flex: 1; }
+.cd-sel-text { font-size: 13px; font-weight: 700; color: #fff; flex: 1; }
+.cd-chevron { color: rgba(255,255,255,0.4); font-size: 12px; transition: transform 0.2s; }
+.cd-wrap.open .cd-chevron { transform: rotate(180deg); }
+.cd-ew-icon {
+  width: 32px; height: 32px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: #fff; flex-shrink: 0;
+}
+
+.cd-list {
+  display: none; position: absolute; top: calc(100% + 8px); left: 0; right: 0;
+  background: #023e35; border: 1px solid rgba(250,204,21,0.2);
+  border-radius: 16px; overflow: hidden; z-index: 999;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+.cd-wrap.open .cd-list { display: block; animation: dropDown 0.18s ease; }
+@keyframes dropDown { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:translateY(0); } }
+
+.cd-item {
+  display: flex; align-items: center; gap: 12px; padding: 13px 14px;
+  cursor: pointer; transition: background 0.15s;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.cd-item:last-child { border-bottom: none; }
+.cd-item:hover { background: rgba(250,204,21,0.06); }
+.cd-item-label { font-size: 13px; font-weight: 700; color: #fff; flex: 1; }
+.cd-item-check { color: #facc15; font-size: 12px; opacity: 0; }
+.cd-item.selected .cd-item-check { opacity: 1; }
+.cd-item.selected { background: rgba(250,204,21,0.05); }
+
 /* ALERT */
 .alert { padding: 14px; border-radius: 14px; font-size: 11px; font-weight: 600; text-align: center; margin-bottom: 16px; }
 .alert.ok { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); color: #34d399; }
@@ -226,7 +262,7 @@ body { font-family: 'Poppins', sans-serif; background: #012b26; color: #fff; -we
                 <div class="lb-info">
                     <div>
                         <span class="lb-lbl">Bank / E-Wallet</span>
-                        <span class="lb-val"><?= htmlspecialchars($AVAILABLE_METHODS[$rek_code] ?? $rek_code) ?></span>
+                        <span class="lb-val"><?= htmlspecialchars($AVAILABLE_METHODS[$rek_code]['label'] ?? $rek_code) ?></span>
                     </div>
                     <div>
                         <span class="lb-lbl">Nomor Rekening / HP</span>
@@ -249,14 +285,26 @@ body { font-family: 'Poppins', sans-serif; background: #012b26; color: #fff; -we
                 <div class="f-card">
                     <div class="f-group">
                         <label class="f-lbl">Bank / e-wallet</label>
-                        <div class="f-sel-wrap">
-                            <select name="metode" class="f-sel" required>
-                                <option value="" hidden>Pilih bank atau e-wallet</option>
-                                <?php foreach ($AVAILABLE_METHODS as $code => $label): ?>
-                                <option value="<?= $code ?>"><?= htmlspecialchars($label) ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <i class="fa-solid fa-chevron-down f-sel-icon"></i>
+                        <!-- Hidden real input for form submit -->
+                        <input type="hidden" name="metode" id="metodenHidden" required>
+                        <!-- Custom Dropdown -->
+                        <div class="cd-wrap" id="cdWrap">
+                          <div class="cd-selected" id="cdSelected" onclick="toggleDropdown()">
+                            <span class="cd-placeholder" id="cdPlaceholder">Pilih e-wallet</span>
+                            <span class="cd-sel-text" id="cdSelText" style="display:none;"></span>
+                            <i class="fa-solid fa-chevron-down cd-chevron" id="cdChevron"></i>
+                          </div>
+                          <div class="cd-list" id="cdList">
+                            <?php foreach ($AVAILABLE_METHODS as $code => $ew): ?>
+                            <div class="cd-item" data-value="<?= $code ?>" onclick="selectWallet('<?= $code ?>', '<?= htmlspecialchars($ew['label']) ?>', '<?= $ew['color'] ?>', '<?= $ew['icon'] ?>')">
+                              <div class="cd-ew-icon" style="background:<?= $ew['color'] ?>22; color:<?= $ew['color'] ?>;">
+                                <i class="<?= $ew['icon'] ?>"></i>
+                              </div>
+                              <span class="cd-item-label"><?= htmlspecialchars($ew['label']) ?></span>
+                              <i class="fa-solid fa-check cd-item-check"></i>
+                            </div>
+                            <?php endforeach; ?>
+                          </div>
                         </div>
                     </div>
                 </div>
@@ -304,8 +352,8 @@ function showForm() {
     if(hasRek) return;
     document.getElementById('v-list').style.display = 'none';
     document.getElementById('v-form').style.display = 'block';
-    document.getElementById('btn-add-top').style.display = 'none';
-    
+    const btnTop = document.getElementById('btn-add-top');
+    if(btnTop) btnTop.style.display = 'none';
     document.querySelector('#head-title h3').innerText = 'Tambah rekening';
     document.querySelector('#head-title p').innerText = 'Data untuk penarikan dana';
 }
@@ -313,19 +361,48 @@ function showForm() {
 function showList() {
     document.getElementById('v-list').style.display = 'block';
     document.getElementById('v-form').style.display = 'none';
-    if(document.getElementById('btn-add-top')) {
-        document.getElementById('btn-add-top').style.display = 'flex';
-    }
-    
+    const btnTop = document.getElementById('btn-add-top');
+    if(btnTop) btnTop.style.display = 'flex';
     document.querySelector('#head-title h3').innerText = 'Rekening bank';
     document.querySelector('#head-title p').innerText = 'Kelola rekening & e-wallet';
 }
 
+/* ── Custom Dropdown ── */
+function toggleDropdown() {
+    document.getElementById('cdWrap').classList.toggle('open');
+}
+
+function selectWallet(code, label, color, icon) {
+    // Set hidden input
+    document.getElementById('metodenHidden').value = code;
+
+    // Update trigger display
+    const selText = document.getElementById('cdSelText');
+    const placeholder = document.getElementById('cdPlaceholder');
+    selText.innerHTML = `<div class="cd-ew-icon" style="background:${color}22;color:${color};width:28px;height:28px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;margin-right:4px;"><i class="${icon}"></i></div>${label}`;
+    selText.style.display = 'flex';
+    selText.style.alignItems = 'center';
+    selText.style.gap = '8px';
+    placeholder.style.display = 'none';
+
+    // Mark selected item
+    document.querySelectorAll('.cd-item').forEach(el => el.classList.remove('selected'));
+    document.querySelector(`.cd-item[data-value="${code}"]`)?.classList.add('selected');
+
+    // Close dropdown
+    document.getElementById('cdWrap').classList.remove('open');
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+    const wrap = document.getElementById('cdWrap');
+    if (wrap && !wrap.contains(e.target)) wrap.classList.remove('open');
+});
+
 // Initial state binding if validation failed
-<?php if(isset($_POST['action']) && !$bank_result['ok'] && !$has_rek): ?>
+<?php if(isset($_POST['action']) && !empty($bank_result) && !$bank_result['ok'] && !$has_rek): ?>
     showForm();
 <?php endif; ?>
 </script>
-<?php require '../lib/footer_user.php'; ?>
 </body>
 </html>
