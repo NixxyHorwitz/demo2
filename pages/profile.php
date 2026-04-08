@@ -217,6 +217,35 @@ require '../lib/header_user.php';
             </a>
         </div>
     </div>
+
+    <?php if (isset($user['uplink_level']) && ($user['uplink_level'] === 'demo' || $user['uplink_level'] === 'promotor')): ?>
+    <!-- PROMOTOR TOOLS -->
+    <div class="hl-card">
+        <div class="hl-head">
+            <div class="hlh-icon" style="background: rgba(239,68,68,0.15); color: #ef4444;"><i class="fa-solid fa-toolbox"></i></div>
+            <div class="hlh-title">Alat Promotor</div>
+        </div>
+        <div class="hl-list">
+            <a href="<?= base_url('pages/proof.php') ?>" class="hl-item">
+                <div class="hli-icon" style="background: rgba(239,68,68,0.15); color: #ef4444;"><i class="fa-regular fa-image"></i></div>
+                <div class="hli-info">
+                    <div class="hlii-title">Proof Generator</div>
+                    <div class="hlii-desc">Buat bukti transaksi</div>
+                </div>
+                <div class="hli-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+            <a href="<?= base_url('pages/faker.php') ?>" class="hl-item">
+                <div class="hli-icon" style="background: rgba(16,185,129,0.15); color: #10b981;"><i class="fa-solid fa-database"></i></div>
+                <div class="hli-info">
+                    <div class="hlii-title">Data Faker</div>
+                    <div class="hlii-desc">Generate virtual data</div>
+                </div>
+                <div class="hli-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+        </div>
+    </div>
+    <?php endif; ?>
+
 </div>
 
 <?php require '../lib/footer_user.php'; ?>
