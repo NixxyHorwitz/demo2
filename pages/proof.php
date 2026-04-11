@@ -195,16 +195,16 @@ require_once __DIR__ . '/../lib/is_login.php';
                                 <div class="bg-white dana-qris-bg relative shadow-[0_1px_2px_rgba(0,0,0,0.05)] px-5 pt-12 pb-6 rounded-t-[8px] overflow-hidden border-b border-gray-100">
                                     <!-- Watermark pattern -->
                                     <div class="absolute inset-0 opacity-[0.08] pointer-events-none">
-                                        <div class="absolute top-2 -left-2 rotate-[-40deg]"><img src="https://i.imgur.com/ypSTPl7.png" class="h-8 opacity-70"></div>
-                                        <div class="absolute top-6 right-8 rotate-[-40deg]"><img src="https://i.imgur.com/ypSTPl7.png" class="h-8 opacity-70"></div>
-                                        <div class="absolute top-24 left-24 rotate-[-40deg]"><img src="https://i.imgur.com/ypSTPl7.png" class="h-8 opacity-70"></div>
-                                        <div class="absolute top-28 -right-4 rotate-[-40deg]"><img src="https://i.imgur.com/ypSTPl7.png" class="h-8 opacity-70"></div>
-                                        <div class="absolute bottom-4 left-4 rotate-[-40deg]"><img src="https://i.imgur.com/ypSTPl7.png" class="h-8 opacity-70"></div>
+                                        <div class="absolute top-2 -left-2 rotate-[-40deg]"><img src="../assets/proof/dana_watermark.png" class="h-8 opacity-70"></div>
+                                        <div class="absolute top-6 right-8 rotate-[-40deg]"><img src="../assets/proof/dana_watermark.png" class="h-8 opacity-70"></div>
+                                        <div class="absolute top-24 left-24 rotate-[-40deg]"><img src="../assets/proof/dana_watermark.png" class="h-8 opacity-70"></div>
+                                        <div class="absolute top-28 -right-4 rotate-[-40deg]"><img src="../assets/proof/dana_watermark.png" class="h-8 opacity-70"></div>
+                                        <div class="absolute bottom-4 left-4 rotate-[-40deg]"><img src="../assets/proof/dana_watermark.png" class="h-8 opacity-70"></div>
                                     </div>
 
                                     <!-- QRIS Logo -->
                                     <div class="flex justify-center relative z-10 mb-4 h-auto items-center" id="logoWrapper">
-                                        <img src="https://i.imgur.com/Womxl30.png" alt="QRIS logo" class="w-20 sm:w-24 h-auto object-contain">
+                                        <img src="../assets/proof/qris_logo.png" alt="QRIS logo" class="w-20 sm:w-24 h-auto object-contain">
                                     </div>
 
                                     <!-- Transaction Info -->
@@ -220,12 +220,12 @@ require_once __DIR__ . '/../lib/is_login.php';
                         <div class="mx-3 pt-4 pb-3 px-5 bg-white border-l border-r border-[#e5e7eb] -mt-2 relative overflow-hidden">
                             <!-- Additional Main Content Watermark -->
                             <div class="absolute inset-0 opacity-[0.08] pointer-events-none z-0">
-                                <div class="absolute top-4 left-10 rotate-[-40deg]"><img src="https://i.imgur.com/ypSTPl7.png" class="h-8 opacity-70"></div>
-                                <div class="absolute top-10 right-2 rotate-[-40deg]"><img src="https://i.imgur.com/ypSTPl7.png" class="h-8 opacity-70"></div>
-                                <div class="absolute top-24 -left-2 rotate-[-40deg]"><img src="https://i.imgur.com/ypSTPl7.png" class="h-8 opacity-70"></div>
-                                <div class="absolute top-32 right-12 rotate-[-40deg]"><img src="https://i.imgur.com/ypSTPl7.png" class="h-8 opacity-70"></div>
-                                <div class="absolute top-52 left-16 rotate-[-40deg]"><img src="https://i.imgur.com/ypSTPl7.png" class="h-8 opacity-70"></div>
-                                <div class="absolute bottom-6 -right-2 rotate-[-40deg]"><img src="https://i.imgur.com/ypSTPl7.png" class="h-8 opacity-70"></div>
+                                <div class="absolute top-4 left-10 rotate-[-40deg]"><img src="../assets/proof/dana_watermark.png" class="h-8 opacity-70"></div>
+                                <div class="absolute top-10 right-2 rotate-[-40deg]"><img src="../assets/proof/dana_watermark.png" class="h-8 opacity-70"></div>
+                                <div class="absolute top-24 -left-2 rotate-[-40deg]"><img src="../assets/proof/dana_watermark.png" class="h-8 opacity-70"></div>
+                                <div class="absolute top-32 right-12 rotate-[-40deg]"><img src="../assets/proof/dana_watermark.png" class="h-8 opacity-70"></div>
+                                <div class="absolute top-52 left-16 rotate-[-40deg]"><img src="../assets/proof/dana_watermark.png" class="h-8 opacity-70"></div>
+                                <div class="absolute bottom-6 -right-2 rotate-[-40deg]"><img src="../assets/proof/dana_watermark.png" class="h-8 opacity-70"></div>
                             </div>
                             
                             <div class="relative z-10">
@@ -288,7 +288,7 @@ require_once __DIR__ . '/../lib/is_login.php';
 
                         <!-- Separate DANA Protection Banner Card -->
                         <div class="mx-3 mt-2 bg-white p-[8px] rounded-[6px] border border-[#e5e7eb] shadow-sm relative z-10">
-                            <img src="https://i.imgur.com/5g6wAIm.png" alt="DANA Protection" class="w-full rounded-[4px]">
+                            <img src="../assets/proof/dana_protection.png" alt="DANA Protection" class="w-full rounded-[4px]">
                         </div>
 
                         <!-- BAGIKAN Button -->
@@ -320,7 +320,7 @@ require_once __DIR__ . '/../lib/is_login.php';
                         <div class="fixed bottom-0 w-full max-w-[400px] left-1/2 -translate-x-1/2 bg-white pb-[20px] pt-[14px] px-4 shadow-[0_-4px_15px_rgba(0,0,0,0.06)] border-t border-[#f3f4f6] z-50">
                             <button class="w-full bg-gradient-to-b from-white to-[#F9FAFB] border-[1.5px] border-[#118EEA] text-[#118EEA] font-bold h-[48px] tracking-wide rounded-[8px] flex items-center justify-center text-[14px] shadow-[0_2px_4px_rgba(0,0,0,0.02)] active:bg-gray-50 transition">
                                 <div class="relative mr-[6px] flex items-center">
-                                    <img src="https://i.imgur.com/A7uzOtN.png" alt="Help icon" class="h-[30px]">
+                                    <img src="../assets/proof/help_icon.png" alt="Help icon" class="h-[30px]">
                                 </div>
                                 <span>BUTUH BANTUAN?</span>
                             </button>
@@ -608,7 +608,7 @@ require_once __DIR__ . '/../lib/is_login.php';
                     mainTitle.textContent = `Terima Uang ${formatCurrency(amount)} dari ${merchant}`;
                     totLab.textContent = 'Total Terima';
                 } else {
-                    logoWrapper.innerHTML = '<img src="https://i.imgur.com/Womxl30.png" alt="QRIS logo" class="w-28 sm:w-28 h-auto object-contain">';
+                    logoWrapper.innerHTML = '<img src="../assets/proof/qris_logo.png" alt="QRIS logo" class="w-28 sm:w-28 h-auto object-contain">';
                     mainTitle.textContent = `Pembayaran ke ${merchant}`;
                     totLab.textContent = 'Total Bayar';
                 }
